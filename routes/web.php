@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\Admin\Settings\CountriesComponent;
+use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+    Route::get('countries', CountriesComponent::class);
 });
