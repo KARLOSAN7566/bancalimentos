@@ -2,27 +2,28 @@
 
 namespace App\Http\Livewire\Admin\Settings;
 
-use App\Country;
+use App\State;
 use Livewire\Component;
 
-
-
-class CountriesComponent extends Component
+class StatesComponent extends Component
 {
-    //definir variables, countries para guardar lista y name el nombre del pais
+    public $states, $name, $stateId, $searchName;
 
-    public $countries, $name, $countryId, $searchName;
+    public $countryId;
 
+    public function mount($id){
+        $this->countryId= $id;
+    }
 
     public function render()
     {
-        $this->countries = Country::when($this->searchName, function($query, $searchName){
+        $this->states = State::when($this->searchName, function($query, $searchName){
             return $query->where('name', 'like', '%'.$searchName. '%');
-        })->get();
+        })
+        ->where('country_id','=',$this->countryId)
+        ->get();
 
-
-        
-        return view('livewire.admin.settings.countries-component');
+        return view('livewire.admin.settings.states-component');
     }
 
     public function store(){
@@ -31,9 +32,10 @@ class CountriesComponent extends Component
         ], [], [
             'name'=> 'nombre'
         ]);
-        $country=new Country();
-        $country->name= $this->name;
-        $country->save();
+        $state=new State();
+        $state->name= $this->name;
+        $state->country_id=$this->countryId;//
+        $state->save();
 
         $this->resetInputFields();
 
@@ -41,35 +43,35 @@ class CountriesComponent extends Component
 
     }
     public function edit($id){
-        $this->countryId= $id;
-        $country=Country::find($id);
-        if ($country != '') {
-            $this->name=$country->name;
+        $this->stateId= $id;
+        $state=State::find($id);
+        if ($state != '') {
+            $this->name=$state->name;
         }
     }
+
     public function update(){
-        $country=Country::find($this->countryId);
-        $country->name= $this->name;
-        $country->update();
+        $state=State::find($this->stateId);
+        $state->name= $this->name;
+        $state->update();
 
         $this->resetInputFields();
 
         $this->emit('close-modal');
     }
     public function delete($id){
-        $this->countryId= $id;
+        $this->stateId= $id;
     }
     public function destroy (){
-        $country=Country::find($this->countryId);
-        $country->delete();
+        $state=State::find($this->stateId);
+        $state->delete();
         $this->resetInputFields();
 
         $this->emit('close-modal');
     }
-
     public function resetInputFields(){
         $this->name='';
-        $this->countryId='';
+        $this->stateId='';
     }
     public function cancel(){
         $this->resetInputFields();

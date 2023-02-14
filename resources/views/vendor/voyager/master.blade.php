@@ -124,6 +124,8 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 <script type="text/javascript">
     window.livewire.on('close-modal', () => {
         $('#create-modal').modal('hide');
+        $('#edit-modal').modal('hide');
+        $('#delete-modal').modal('hide');
     });
 </script>
 
