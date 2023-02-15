@@ -1,14 +1,13 @@
 <div>
-    @include('livewire.admin.settings.countries-modals.create')
-    @include('livewire.admin.settings.countries-modals.edit')
-    @include('livewire.admin.settings.countries-modals.delete')
-    
-    @section('page_title', 'Paises | Bancalimentos' )
+    @include('livewire.admin.customers.modals.create')
+
+
+    @section('page_title', 'Clientes | Bancalimentos' )
     @section('page_header')
     
     <div class="container-fluid">
         <h1 class="page-title">
-            <i class="voyager-location"></i> Paises
+            <i class="voyager-location"></i> Clintes
         </h1>
         <button class="btn btn-success btn-add-new" data-toggle="modal" data-target="#create-modal">
             <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>
@@ -19,8 +18,8 @@
     <div class="page-content browse container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <label ><strong>Buscar Pais: </strong></label>
-                        <input type="text" class="form-control" placeholder="Nombre del Pais" wire:model="searchName">
+                <label ><strong>Buscar Cliente: </strong></label>
+                        <input type="text" class="form-control" placeholder="Nombre del Cliente" wire:model="searchName">
             </div>
             <div class="col-md-12">
                 <div class="panel panel-bordered">
@@ -30,26 +29,35 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Nombre</th>
-                                        <th>Acciones</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Tipo Identificación</th>
+                                        <th>Numero Identificación</th>
+                                        <th>Genero</th>
+                                        <th>Dirección</th>
+                                        <th>Ciudad</th>
+                                        <th>Teléfono</th>
+                                        <th>WhatsApp</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Usuario</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($countries as $country)
+                                    @foreach ($customers as $customer)
                                     <tr>
-                                        <td>{{ $country->id }}</td>
-                                        <td>{{ $country->name }}</td>
+                                        <td>{{ $customer->id }}</td>
+                                        <td>{{ $customer->first_name }}</td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click='edit({{ $country->id }})' data-toggle="modal" data-target="#edit-modal"> 
+                                            <button class="btn btn-primary" wire:click='edit({{ $state->id }})' data-toggle="modal" data-target="#edit-modal"> 
                                                 <i class="voyager-edit"></i>
                                                 Editar
                                             </button>
-                                            <button class="btn btn-danger" wire:click='delete({{ $country->id }})' data-toggle="modal" data-target="#delete-modal"> 
+                                            <button class="btn btn-danger" wire:click='delete({{ $state->id }})' data-toggle="modal" data-target="#delete-modal"> 
                                                 <i class="voyager-trash"></i>
                                                 Eliminar
                                             </button>
-                                            <a href="{{ route('countries.states', ['country'=>$country->id]) }}">
-                                            <button class="btn btn-warning">Departamentos</button>
+                                            <a href="{{ route('states.cities', ['country'=>$countryId, 'state'=>$state->id]) }}">
+                                            <button class="btn btn-warning">Municipios</button>
                                             </a>
                                         </td>
                                     </tr>
@@ -64,4 +72,5 @@
             </div>
         </div>
     </div>
+
 </div>

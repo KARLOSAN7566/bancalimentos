@@ -2,28 +2,29 @@
 
 namespace App\Http\Livewire\Admin\Settings;
 
-use App\State;
+use App\City;
 use Livewire\Component;
 
-class StatesComponent extends Component
+class CitiesComponent extends Component
 {
-    public $states, $name, $stateId, $searchName;
+    public $cities, $name, $cityId, $searchName;
 
-    public $countryId;
+    public $countryId, $stateId;
 
-    public function mount($country){
+    public function mount($country, $state){
         $this->countryId= $country;
+        $this->stateId= $state;
     }
 
     public function render()
     {
-        $this->states = State::when($this->searchName, function($query, $searchName){
+        $this->cities = City::when($this->searchName, function($query, $searchName){
             return $query->where('name', 'like', '%'.$searchName. '%');
         })
-        ->where('country_id','=',$this->countryId)
+        ->where('state_id','=',$this->stateId)
         ->get();
 
-        return view('livewire.admin.settings.states-component');
+        return view('livewire.admin.settings.cities-component');
     }
 
     public function store(){
@@ -32,10 +33,11 @@ class StatesComponent extends Component
         ], [], [
             'name'=> 'nombre'
         ]);
-        $state=new State();
-        $state->name= $this->name;
-        $state->country_id=$this->countryId;//
-        $state->save();
+        $city=new City();
+        $city->name= $this->name;
+        $city->state_id=$this->stateId;//
+        $city->country_id=$this->countryId;//
+        $city->save();
 
         $this->resetInputFields();
 
@@ -44,29 +46,29 @@ class StatesComponent extends Component
     }
 
     public function edit($id){
-        $this->stateId= $id;
-        $state=State::find($id);
-        if ($state != '') {
-            $this->name=$state->name;
+        $this->cityId= $id;
+        $city=City::find($id);
+        if ($city != '') {
+            $this->name=$city->name;
         }
     }
 
     public function update(){
-        $state=State::find($this->stateId);
-        $state->name= $this->name;
-        $state->update();
+        $city=City::find($this->cityId);
+        $city->name= $this->name;
+        $city->update();
 
         $this->resetInputFields();
 
         $this->emit('close-modal');
     }
     public function delete($id){
-        $this->stateId= $id;
+        $this->cityId= $id;
     }
 
     public function destroy (){
-        $state=State::find($this->stateId);
-        $state->delete();
+        $city=City::find($this->cityId);
+        $city->delete();
         $this->resetInputFields();
 
         $this->emit('close-modal');
@@ -74,13 +76,12 @@ class StatesComponent extends Component
 
     public function resetInputFields(){
         $this->name='';
-        $this->stateId='';
+        $this->cityId='';
     }
-    
+
     public function cancel(){
         $this->resetInputFields();
 
         $this->emit('close-modal');
     }
-
 }

@@ -2,8 +2,10 @@
 
 use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\Settings\CitiesComponent;
 use App\Http\Livewire\Admin\Settings\StatesComponent;
 use App\Http\Livewire\Admin\Settings\CountriesComponent;
+use App\Http\Livewire\Admin\Customers\CustomersComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +26,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::get('countries', CountriesComponent::class);
-    Route::get('countries/{id}/states', StatesComponent::class)->name('countries.states');
+    Route::get('countries/{country}/states', StatesComponent::class)->name('countries.states');
+    Route::get('countries/{country}/states/{state}', CitiesComponent::class)->name('states.cities');
+    Route::get('customers', CustomersComponent::class);
 });

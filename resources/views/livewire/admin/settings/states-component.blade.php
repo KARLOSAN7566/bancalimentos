@@ -48,8 +48,8 @@
                                                 <i class="voyager-trash"></i>
                                                 Eliminar
                                             </button>
-                                            <a href="{{ route('countries.states', ['id'=>$state->id]) }}">
-                                            <button class="btn btn-warning">Departamentos</button>
+                                            <a href="{{ route('states.cities', ['country'=>$countryId, 'state'=>$state->id]) }}">
+                                            <button class="btn btn-warning">Municipios</button>
                                             </a>
                                         </td>
                                     </tr>
