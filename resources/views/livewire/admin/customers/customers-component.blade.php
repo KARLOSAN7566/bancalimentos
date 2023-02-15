@@ -1,5 +1,7 @@
 <div>
     @include('livewire.admin.customers.modals.create')
+    @include('livewire.admin.customers.modals.edit')
+@include('livewire.admin.customers.modals.delete')
 
 
     @section('page_title', 'Clientes | Bancalimentos' )
@@ -47,18 +49,25 @@
                                     <tr>
                                         <td>{{ $customer->id }}</td>
                                         <td>{{ $customer->first_name }}</td>
+                                        <td>{{ $customer->last_name }}</td>
+                                        <td>{{ $customer->identification_type }}</td>
+                                        <td>{{ $customer->identification_number }}</td>
+                                        <td>{{ $customer->gender }}</td>
+                                        <td>{{ $customer->address }}</td>
+                                        <td>{{ $customer->city_id }}</td>
+                                        <td>{{ $customer->phone }}</td>
+                                        <td>{{ $customer->whatsapp }}</td>
+                                        <td>{{ $customer->email }}</td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click='edit({{ $state->id }})' data-toggle="modal" data-target="#edit-modal"> 
+                                            <button class="btn btn-primary" wire:click='edit({{ $customer->id }})' data-toggle="modal" data-target="#edit-modal"> 
                                                 <i class="voyager-edit"></i>
                                                 Editar
                                             </button>
-                                            <button class="btn btn-danger" wire:click='delete({{ $state->id }})' data-toggle="modal" data-target="#delete-modal"> 
+                                            <button class="btn btn-danger" wire:click='delete({{ $customer->id }})' data-toggle="modal" data-target="#delete-modal"> 
                                                 <i class="voyager-trash"></i>
                                                 Eliminar
                                             </button>
-                                            <a href="{{ route('states.cities', ['country'=>$countryId, 'state'=>$state->id]) }}">
-                                            <button class="btn btn-warning">Municipios</button>
-                                            </a>
+                                        
                                         </td>
                                     </tr>
                                         
