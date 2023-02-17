@@ -9,7 +9,7 @@
 
     <div class="container-fluid">
         <h1 class="page-title">
-            <i class="voyager-location"></i> Clintes
+            <i class="voyager-person"></i> Clintes
         </h1>
         <button class="btn btn-success btn-add-new" data-toggle="modal" data-target="#create-modal">
             <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>

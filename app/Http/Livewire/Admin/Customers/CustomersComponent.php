@@ -29,7 +29,7 @@ class CustomersComponent extends Component
 
 
 
-    public function render()
+    public function render()//para consultar y recuperar satos de varias tablas
     {
         $this->customers = Customer::select(
             'customers.*',
