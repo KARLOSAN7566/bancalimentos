@@ -1,12 +1,12 @@
 <div>
     @include('livewire.admin.customers.modals.create')
     @include('livewire.admin.customers.modals.edit')
-@include('livewire.admin.customers.modals.delete')
+    @include('livewire.admin.customers.modals.delete')
 
 
     @section('page_title', 'Clientes | Bancalimentos' )
     @section('page_header')
-    
+
     <div class="container-fluid">
         <h1 class="page-title">
             <i class="voyager-location"></i> Clintes
@@ -20,8 +20,8 @@
     <div class="page-content browse container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <label ><strong>Buscar Cliente: </strong></label>
-                        <input type="text" class="form-control" placeholder="Nombre del Cliente" wire:model="searchName">
+                <label><strong>Buscar Cliente: </strong></label>
+                <input type="text" class="form-control" placeholder="Nombre del Cliente" wire:model="searchName">
             </div>
             <div class="col-md-12">
                 <div class="panel panel-bordered">
@@ -37,6 +37,8 @@
                                         <th>Numero Identificación</th>
                                         <th>Genero</th>
                                         <th>Dirección</th>
+                                        <th>País</th>
+                                        <th>Departamento</td>
                                         <th>Ciudad</th>
                                         <th>Teléfono</th>
                                         <th>WhatsApp</th>
@@ -50,27 +52,47 @@
                                         <td>{{ $customer->id }}</td>
                                         <td>{{ $customer->first_name }}</td>
                                         <td>{{ $customer->last_name }}</td>
-                                        <td>{{ $customer->identification_type }}</td>
+                                        <td>
+                                            @switch($customer->identification_type)
+                                            @case('cc')
+                                            Cedula de Ciudadania
+                                            @break
+                                            @case('ti')
+                                            Tarjeta de Identidad
+                                            @break
+                                            @endswitch
+                                        </td>
                                         <td>{{ $customer->identification_number }}</td>
-                                        <td>{{ $customer->gender }}</td>
+                                        <td>
+                                            @switch($customer->gender)
+                                            @case('m')
+                                            Masculino
+                                            @break
+                                            @case('f')
+                                            Femenino
+                                            @break
+                                            @endswitch
+                                        </td>
                                         <td>{{ $customer->address }}</td>
-                                        <td>{{ $customer->city_id }}</td>
+                                        <td>{{ $customer->country_name }}</td>
+                                        <td>{{ $customer->state_name }}</td>
+                                        <td>{{ $customer->city_name }}</td>
                                         <td>{{ $customer->phone }}</td>
                                         <td>{{ $customer->whatsapp }}</td>
                                         <td>{{ $customer->email }}</td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click='edit({{ $customer->id }})' data-toggle="modal" data-target="#edit-modal"> 
+                                            <button class="btn btn-primary" wire:click='edit({{ $customer->id }})' data-toggle="modal" data-target="#edit-modal">
                                                 <i class="voyager-edit"></i>
                                                 Editar
                                             </button>
-                                            <button class="btn btn-danger" wire:click='delete({{ $customer->id }})' data-toggle="modal" data-target="#delete-modal"> 
+                                            <button class="btn btn-danger" wire:click='delete({{ $customer->id }})' data-toggle="modal" data-target="#delete-modal">
                                                 <i class="voyager-trash"></i>
                                                 Eliminar
                                             </button>
-                                        
+
                                         </td>
                                     </tr>
-                                        
+
                                     @endforeach
                                 </tbody>
                             </table>

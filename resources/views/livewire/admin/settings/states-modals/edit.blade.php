@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" aria-label="{{ __('voyager::generic.close') }}" wire:click="cancel()"><span aria-hidden="true">&times;</span></button>
-                <h5 class="modal-title"><i class="voyager-edit"></i> Editar Pais</h5>
+                <h5 class="modal-title"><i class="voyager-edit"></i> Editar Departamento</h5>
             </div>
             <div class="modal-body">
                 <div class="row">

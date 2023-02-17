@@ -28,9 +28,9 @@ class StatesComponent extends Component
 
     public function store(){
         $this->validate([
-            'name' => 'required',
+            'name' => 'required|unique:countries,name',
         ], [], [
-            'name'=> 'nombre'
+            'name' => 'departamento'
         ]);
         $state=new State();
         $state->name= $this->name;
@@ -43,7 +43,8 @@ class StatesComponent extends Component
 
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $this->stateId= $id;
         $state=State::find($id);
         if ($state != '') {
@@ -52,19 +53,26 @@ class StatesComponent extends Component
     }
 
     public function update(){
+        $this->validate([
+            'name' => 'required|unique:countries,name,'.$this->stateId,
+        ], [], [
+            'name' => 'departamento'
+        ]);
         $state=State::find($this->stateId);
         $state->name= $this->name;
+        $state->country_id=$this->countryId;
         $state->update();
 
         $this->resetInputFields();
-
         $this->emit('close-modal');
     }
-    public function delete($id){
+    public function delete($id)
+    {
         $this->stateId= $id;
     }
 
-    public function destroy (){
+    public function destroy ()
+    {
         $state=State::find($this->stateId);
         $state->delete();
         $this->resetInputFields();
@@ -78,8 +86,10 @@ class StatesComponent extends Component
     }
     
     public function cancel(){
-        $this->resetInputFields();
 
+        $this->resetErrorBag();
+        $this->resetValidation();
+        $this->resetInputFields();
         $this->emit('close-modal');
     }
 
