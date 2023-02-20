@@ -21,7 +21,8 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
-                        <div class="row no-margin-bottom">
+
+                        <div class="row">
                             <div class="col-md-12">
                                 <label><strong>Buscar Departamento: </strong></label>
                                 <input type="text" class="form-control" placeholder="Nombre del Departamento"
