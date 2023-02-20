@@ -1,14 +1,14 @@
 <div>
-    @include('livewire.admin.settings.materials-modals.create')
-    @include('livewire.admin.settings.materials-modals.edit')
-    @include('livewire.admin.settings.materials-modals.delete')
-    
-    @section('page_title', 'Materiales | Bancalimentos' )
+    @include('livewire.admin.settings.products-modals.create')
+    @include('livewire.admin.settings.products-modals.edit')
+    @include('livewire.admin.settings.products-modals.delete')
+
+    @section('page_title', 'Productos | Bancalimentos' )
     @section('page_header')
 
     <div class="container-fluid">
         <h1 class="page-title">
-            <i class="voyager-truck"></i> Materiales
+            <i class="voyager-treasure"></i> Productos
         </h1>
         <button class="btn btn-success btn-add-new" data-toggle="modal" data-target="#create-modal">
             <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>
@@ -23,8 +23,8 @@
                     <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label><strong>Buscar Material: </strong></label>
-                            <input type="text" class="form-control" placeholder="Nombre del material" wire:model="searchName">
+                            <label><strong>Buscar Producto: </strong></label>
+                            <input type="text" class="form-control" placeholder="Nombre del producto" wire:model="searchName">
                         </div>
                         <div class="col-md-12">
                             <div class="panel panel-bordered">
@@ -35,25 +35,29 @@
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Descripcion</th>
-                                                    <th>Puntos por Kilogramo</th>
+                                                    <th>Detalles</th>
+                                                    <th>Presentación</th>
+                                                    <th>Peso en gramos</th>
                                                     <th>Creado por:</th>
                                                     <th>Actualizado por:</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($materials as $material)
+                                                @foreach ($products as $product)
                                                 <tr>
-                                                    <td>{{ $material->id }}</td>
-                                                    <td>{{ $material->description }}</td>
-                                                    <td>{{ $material->point_for_kilogram }}</td>
-                                                    <td>{{ $material->created_user_id }}</td>
-                                                    <td>{{ $material->updated_user_id }}</td>
+                                                    <td>{{ $product->id }}</td>
+                                                    <td>{{ $product->description }}</td>
+                                                    <td>{{ $product->details }}</td>
+                                                    <td>{{ $product->presentation }}</td>
+                                                    <td>{{ $product->weight_gr }}</td>
+                                                    <td>{{ $product->created_user_id }}</td>
+                                                    <td>{{ $product->updated_user_id }}</td>
                                                     <td>
-                                                        <button class="btn btn-primary" wire:click='edit({{ $material->id }})' data-toggle="modal" data-target="#edit-modal">
+                                                        <button class="btn btn-primary" wire:click='edit({{ $product->id }})' data-toggle="modal" data-target="#edit-modal">
                                                             <i class="voyager-edit"></i>
                                                             Editar
                                                         </button>
-                                                        <button class="btn btn-danger" wire:click='delete({{ $material->id }})' data-toggle="modal" data-target="#delete-modal">
+                                                        <button class="btn btn-danger" wire:click='delete({{ $product->id }})' data-toggle="modal" data-target="#delete-modal">
                                                             <i class="voyager-trash"></i>
                                                             Eliminar
                                                         </button>
@@ -74,4 +78,5 @@
             </div>
         </div>
     </div>
+
 </div>
