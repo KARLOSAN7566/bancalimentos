@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('customers', CustomersComponent::class);
 
     //Sites
-    Route::get('sites', SitesComponent::class);
+    Route::get('sities', SitesComponent::class);
     //Materials
     Route::get('materials', MaterialsComponent::class);
 });
