@@ -50,18 +50,23 @@
                                                     <td>{{ $product->details }}</td>
                                                     <td>{{ $product->presentation }}</td>
                                                     <td>{{ $product->weight_gr }}</td>
-                                                    <td>{{ $product->created_user_id }}</td>
-                                                    <td>{{ $product->updated_user_id }}</td>
+                                                    <td>{{ \App\Models\User::find($product->created_user_id)->name}}</td>
+                                                    <td>{{ \App\Models\User::find($product->updated_user_id)->name}}</td>
                                                     <td>
                                                         <button class="btn btn-primary" wire:click='edit({{ $product->id }})' data-toggle="modal" data-target="#edit-modal">
                                                             <i class="voyager-edit"></i>
                                                             Editar
                                                         </button>
+
                                                         <button class="btn btn-danger" wire:click='delete({{ $product->id }})' data-toggle="modal" data-target="#delete-modal">
                                                             <i class="voyager-trash"></i>
                                                             Eliminar
                                                         </button>
 
+                                                        <a
+                                                        href="{{ route('products_id', ['products_images' => $productId, 'product' => $productId->id]) }}">
+                                                        <button class="btn btn-warning">Imagenes</button>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

@@ -30,17 +30,12 @@
                         <input type="text" class="form-control" wire:model="weight_gr">
                         @error('weight_gr') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
-
-                    <div class="col-lg-12">
-                        <label ><strong>Creado por: </strong></label>
-                        <input type="text" class="form-control" wire:model="created_user_id">
-                        @error('created_user_id') <span class="text-danger error">{{ $message }}</span>@enderror
-                    </div>
-
-                    <div class="col-lg-12">
-                        <label ><strong>Actualizado por: </strong></label>
-                        <input type="text" class="form-control" wire:model="updated_user_id">
-                        @error('updated_user_id') <span class="text-danger error">{{ $message }}</span>@enderror
+                    <div class="col-md-12">
+                        <label ><strong>Imagenes: </strong></label>
+                        <div class="form-group">
+                            <input type="file" class="form-control" wire:model="images" multiple>
+                            @error('image.*') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
                     </div>
                 </div>
             </div>

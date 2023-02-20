@@ -3,10 +3,16 @@
 namespace App\Http\Livewire\Admin\Settings;
 
 use App\Product;
+use App\ProductsImage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsComponent extends Component
 {
+    use WithFileUploads;
+    public $images = [];
+    
     public $products, $productId, $description, $details, $presentation, $weight_gr, $created_user_id, $updated_user_id;
     public $updateMode = false;
 
@@ -23,25 +29,35 @@ class ProductsComponent extends Component
             'details'=>'required',
             'presentation'=>'required',
             'weight_gr'=>'required',
-            // 'created_user_id'=>'required',
-            // 'updated_user_id'=>'required'
+            'images.*' => 'image|max:1024', // 1MB Max
         ],[],[
             'description'=> 'descripción',
             'details'=>'detalles',
             'presentation'=>'presentación',
             'weight_gr'=>'peso en gramos',
-            // 'created_user_id'=> 'creado por:',
-            // 'updated_user_id'=> 'actualizado por:'
         ]);
         $product=new Product();
         $product->description= $this->description;
         $product->details= $this->details;
         $product->presentation= $this->presentation;
         $product->weight_gr= $this->weight_gr;
-        $product->created_user_id= $this->created_user_id;
-        $product->updated_user_id= $this->updated_user_id;
+        $product->created_user_id= Auth::user()->id;
+        $product->updated_user_id= Auth::user()->id;
 
         $product->save();
+        
+
+        foreach ($this->images as $key => $image) {
+            $this->images[$key] = $image->store('images','public');
+        }
+
+        foreach ($this->images as $img) {
+            $image=new ProductsImage();
+            $image->product_id=$product->id;
+            $image->image=$img;
+            $image->save();
+        }
+
         $this->resetInputFields();
         $this->emit('close-modal');
     }
@@ -51,8 +67,7 @@ class ProductsComponent extends Component
         $this->details='';
         $this->presentation='';
         $this->weight_gr='';
-        $this->created_user_id='';
-        $this->updated_user_id='';
+
     }
 
     public function edit($id)
@@ -76,15 +91,11 @@ class ProductsComponent extends Component
             'details'=>'required',
             'presentation'=>'required',
             'weight_gr'=>'required',
-            // 'created_user_id'=>'required',
-            // 'updated_user_id'=>'required'
         ],[],[
             'description'=> 'descripción',
             'details'=>'detalles',
             'presentation'=>'presentación',
             'weight_gr'=>'peso en gramos',
-            // 'created_user_id'=> 'creado por:',
-            // 'updated_user_id'=> 'actualizado por:'
         ]);
 
         $product=Product::find($this->productId);
@@ -92,8 +103,7 @@ class ProductsComponent extends Component
         $product->details= $this->details;
         $product->presentation= $this->presentation;
         $product->weight_gr= $this->weight_gr;
-        $product->created_user_id= $this->created_user_id;
-        $product->updated_user_id= $this->updated_user_id;
+        $product->updated_user_id= Auth::user()->id;
 
         $product->update();
         $this->resetInputFields();

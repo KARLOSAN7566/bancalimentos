@@ -6,10 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Sites\SitesComponent;
 use App\Http\Livewire\Admin\Settings\CitiesComponent;
 use App\Http\Livewire\Admin\Settings\StatesComponent;
+use App\Http\Livewire\Admin\Partners\PartnersComponent;
+use App\Http\Livewire\Admin\Settings\ProductsComponent;
 use App\Http\Livewire\Admin\Settings\CountriesComponent;
 use App\Http\Livewire\Admin\Settings\MaterialsComponent;
 use App\Http\Livewire\Admin\Customers\CustomersComponent;
-use App\Http\Livewire\Admin\Settings\ProductsComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,5 @@ Route::group(['prefix' => 'admin'], function () {
     //Products
     Route::get('products', ProductsComponent::class);
     //Partners
-    
+    Route::get('partners', PartnersComponent::class);
 });
