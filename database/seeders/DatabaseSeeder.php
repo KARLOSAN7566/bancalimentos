@@ -31,5 +31,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SitesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(FailedJobsTableSeeder::class);
+        $this->call(PasswordResetsTableSeeder::class);
+        $this->call(PersonalAccessTokensTableSeeder::class);
+        $this->call(UserRolesTableSeeder::class);
     }
 }
