@@ -17,48 +17,56 @@
     @stop
 
     <div class="page-content browse container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <label ><strong>Buscar Pais: </strong></label>
-                        <input type="text" class="form-control" placeholder="Nombre del Pais" wire:model="searchName">
-            </div>
+        <div class="row no-margin-bottom">
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
-                        <div class="table-responsive">
-                            <table id="dataTable" class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Nombre</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($countries as $country)
-                                    <tr>
-                                        <td>{{ $country->id }}</td>
-                                        <td>{{ $country->name }}</td>
-                                        <td>
-                                            <button class="btn btn-primary" wire:click='edit({{ $country->id }})' data-toggle="modal" data-target="#edit-modal"> 
-                                                <i class="voyager-edit"></i>
-                                                Editar
-                                            </button>
-                                            <button class="btn btn-danger" wire:click='delete({{ $country->id }})' data-toggle="modal" data-target="#delete-modal"> 
-                                                <i class="voyager-trash"></i>
-                                                Eliminar
-                                            </button>
-                                            <a href="{{ route('countries.states', ['country'=>$country->id]) }}">
-                                            <button class="btn btn-warning">Departamentos</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                        
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                        <div class="row no-margin-bottom">
+                            <div class="col-md-12">
+                                <label ><strong>Buscar Pais: </strong></label>
+                                        <input type="text" class="form-control" placeholder="Nombre del Pais" wire:model="searchName">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="panel panel-bordered">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table id="dataTable" class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Nombre</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($countries as $country)
+                                                    <tr>
+                                                        <td>{{ $country->id }}</td>
+                                                        <td>{{ $country->name }}</td>
+                                                        <td>
+                                                            <button class="btn btn-primary" wire:click='edit({{ $country->id }})' data-toggle="modal" data-target="#edit-modal"> 
+                                                                <i class="voyager-edit"></i>
+                                                                Editar
+                                                            </button>
+                                                            <button class="btn btn-danger" wire:click='delete({{ $country->id }})' data-toggle="modal" data-target="#delete-modal"> 
+                                                                <i class="voyager-trash"></i>
+                                                                Eliminar
+                                                            </button>
+                                                            <a href="{{ route('countries.states', ['country'=>$country->id]) }}">
+                                                            <button class="btn btn-warning">Departamentos</button>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                        
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
