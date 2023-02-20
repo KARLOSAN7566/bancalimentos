@@ -8,6 +8,7 @@ use App\Http\Livewire\Admin\Settings\CitiesComponent;
 use App\Http\Livewire\Admin\Settings\StatesComponent;
 use App\Http\Livewire\Admin\Settings\CountriesComponent;
 use App\Http\Livewire\Admin\Customers\CustomersComponent;
+use App\Http\Livewire\Admin\Settings\Materials\MaterialsComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('customers', CustomersComponent::class);
 
     //Sites
-    Route::get('sities', SitesComponent::class);
+    Route::get('sites', SitesComponent::class);
+    //Materials
+    Route::get('materials', MaterialsComponent::class);
 });
