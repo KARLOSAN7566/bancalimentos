@@ -3,32 +3,62 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" aria-label="{{ __('voyager::generic.close') }}" wire:click="cancel()"><span aria-hidden="true">&times;</span></button>
-                <h5 class="modal-title"><i class="voyager-plus"></i> Nuevo Producto</h5>
+                <h5 class="modal-title"><i class="voyager-plus"></i> Nuevo Socio</h5>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label ><strong>Descripción: </strong></label>
-                        <input type="text" class="form-control" wire:model="description">
-                        @error('description') <span class="text-danger error">{{ $message }}</span>@enderror
+                        <label ><strong>Nombres: </strong></label>
+                        <input type="text" class="form-control" wire:model="firstname">
+                        @error('firstname') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
 
                     <div class="col-lg-12">
-                        <label ><strong>Detalles: </strong></label>
-                        <input type="text" class="form-control" wire:model="details">
-                        @error('details') <span class="text-danger error">{{ $message }}</span>@enderror
+                        <label ><strong>Apellidos: </strong></label>
+                        <input type="text" class="form-control" wire:model="lastname">
+                        @error('lastname') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
 
                     <div class="col-lg-12">
-                        <label ><strong>Presentación: </strong></label>
-                        <input type="text" class="form-control" wire:model="presentation">
-                        @error('presentation') <span class="text-danger error">{{ $message }}</span>@enderror
+                        <label ><strong>Numero de Identificacion: </strong></label>
+                        <input type="text" class="form-control" wire:model="identification">
+                        @error('identification') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
 
                     <div class="col-lg-12">
-                        <label ><strong>Peso en gramos: </strong></label>
-                        <input type="text" class="form-control" wire:model="weight_gr">
-                        @error('weight_gr') <span class="text-danger error">{{ $message }}</span>@enderror
+                        <label ><strong>Fecha de Cumpleaños: </strong></label>
+                        <input type="date" class="form-control" wire:model="birthday">
+                        @error('birthday') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label ><strong>Género: </strong></label>
+                        <input type="text" class="form-control" wire:model="genere">
+                        @error('genere') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label ><strong>Clase: </strong></label>
+                        <input type="text" class="form-control" wire:model="class">
+                        @error('class') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label ><strong>Sector: </strong></label>
+                        <input type="text" class="form-control" wire:model="sector">
+                        @error('sector') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label ><strong>Teléfono: </strong></label>
+                        <input type="text" class="form-control" wire:model="phone">
+                        @error('phone') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label ><strong>Grupo: </strong></label>
+                        <input type="text" class="form-control" wire:model="birthday">
+                        @error('birthday') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
 
                     <div class="col-lg-12">

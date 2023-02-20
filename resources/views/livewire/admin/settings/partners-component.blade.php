@@ -35,7 +35,7 @@
                                                     <th>N° Identificacion</th>
                                                     <th>Fecha Cumpleaños</th>
                                                     <th>Genero</th>
-                                                    <th>Classe</th>
+                                                    <th>Clase</th>
                                                     <th>Sector</th>
                                                     <th>Teléfono</th>
                                                     <th>Grupo</th>
