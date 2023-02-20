@@ -7,9 +7,8 @@ use App\Http\Livewire\Admin\Sites\SitesComponent;
 use App\Http\Livewire\Admin\Settings\CitiesComponent;
 use App\Http\Livewire\Admin\Settings\StatesComponent;
 use App\Http\Livewire\Admin\Settings\CountriesComponent;
+use App\Http\Livewire\Admin\Settings\MaterialsComponent;
 use App\Http\Livewire\Admin\Customers\CustomersComponent;
-use App\Http\Livewire\Admin\Settings\Materials\MaterialsComponent;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
