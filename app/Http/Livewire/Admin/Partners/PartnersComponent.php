@@ -21,6 +21,11 @@ class PartnersComponent extends Component
         ]);
     }
 
+    public function store(){
+        
+    }
+
+
     public function addPhone()
     {
         $this->validate(

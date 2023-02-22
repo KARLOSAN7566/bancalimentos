@@ -21,6 +21,7 @@
 
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @livewireStyles
 
     @yield('css')
@@ -122,6 +123,10 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 @livewireScripts
 
 <script type="text/javascript">
+    window.livewire.on('alert', param => {
+        toastr[param['type']](param['message']);
+    });
+
     window.livewire.on('close-modal', () => {
         $('#create-modal').modal('hide');
         $('#edit-modal').modal('hide');
