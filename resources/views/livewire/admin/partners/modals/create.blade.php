@@ -35,8 +35,8 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="is-required"><strong>Nombres: </strong></label>
-                            <input type="text" class="form-control" wire:model="name" placeholder="Nombres">
-                            @error('name')
+                            <input type="text" class="form-control" wire:model="firtsname" placeholder="Nombres">
+                            @error('firtsname')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="form-group">
                             <label class="is-required"><strong>Sector: </strong></label>
-                            <select class="form-control" wire:model="class">
+                            <select class="form-control" wire:model="sector">
                                 <option value="">Seleccionar</option>
                                 <option value="urbano">Urbano</option>
                                 <option value="rural">Rural</option>
@@ -105,7 +105,7 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="is-required"><strong>Teléfono: </strong></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" wire:model='phone'>
@@ -129,8 +129,10 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif
-                        <div class="form-group">
+                        @endif --}}
+
+
+                        {{-- <div class="form-group">
                             <label class="is-required"><strong>Dirección de residencia: </strong></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" wire:model='address'>
@@ -154,8 +156,10 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif
-                        <div class="form-group">
+                        @endif --}}
+
+
+                        {{-- <div class="form-group">
                             <label class="is-required"><strong>Actividad económica: </strong></label>
                             <div class="row no-margin-bottom">
                                 <div class="col-lg-12">
@@ -198,7 +202,9 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif
+                        @endif --}}
+
+
                         <div class="form-group">
                             <label class="is-required"><strong>Num. Personas nucleo familiar: </strong></label>
                             <input type="text" class="form-control" wire:model="family">
@@ -228,7 +234,7 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="is-required"><strong>Notas: </strong></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" wire:model='note'>
@@ -252,7 +258,7 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif
+                        @endif --}}
                     </div>
                 </div>
             </div>

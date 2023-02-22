@@ -3,26 +3,67 @@
 namespace App\Http\Livewire\Admin\Partners;
 
 use App\EconomicActivity;
+use App\Partner;
 use App\PopulationGroup;
+use App\Site;
 use Livewire\Component;
 
 class PartnersComponent extends Component
 {
-    public $phones = [], $phone, $addresses = [], $address, $activities = [], $activity;
+    public $siteId, $group, $family, $sector, $class, $genere, $birthday, $identification, 
+    $lastname, $firtsname;
+    public $phones = [],
+        $phone,
+        $addresses = [],
+        $address,
+        $activities = [],
+        $activity;
+
+    
+        
 
     public function render()
     {
-        $economicActivities=EconomicActivity::all();
-        $populationGroups=PopulationGroup::all();
-        return view('livewire.admin.partners.partners-component',[
-            'economicActivities'=>$economicActivities,
-            'populationGroups'=>$populationGroups
-            
+        $economicActivities = EconomicActivity::all();
+        $populationGroups = PopulationGroup::all();
+        $siteId = Site ::all();
+
+        return view('livewire.admin.partners.partners-component', [
+            'economicActivities' => $economicActivities,
+            'populationGroups' => $populationGroups,
+            //'siteId'=> $siteId;
+
         ]);
     }
 
-    public function store(){
-        
+    public function store()
+    {
+        $this->validate([
+            'firtsname'=> 'required',
+            'lastname'=> 'required',
+            'identification'=> 'required',
+            'birthday'=> 'required',
+            'genere'=> 'required',
+            'class'=> 'required',
+            'sector'=> 'required',
+            'family'=> 'required',
+            'group'=> 'required',
+            'siteId'=> 'required'
+
+        ],[],[
+            'firtsname'=> 'nombres',
+            'lastname'=> 'apellidos',
+            'identification'=> 'identificacion',
+            'birthday'=> 'cumpleaños',
+            'genere'=> 'genero',
+            'class'=> 'estrato',
+            'sector'=> 'sector',
+            'family'=> 'familiares',
+            'group'=> 'grupo',
+            'siteId'=> 'ciudad'
+        ]);
+
+        $partner=new Partner();
     }
 
 
