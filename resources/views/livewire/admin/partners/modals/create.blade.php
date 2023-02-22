@@ -228,6 +228,31 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label class="is-required"><strong>Notas: </strong></label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" wire:model='note'>
+                                <a href="#" class="input-group-addon"
+                                    style="color:#fff;background-color:#2ECC71;border:0px" wire:click='addNote'>
+                                    <i class="voyager-plus"></i>
+                                </a>
+                            </div>
+                            @error('note')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        @if (count($phones) > 0)
+                        <div class="panel panel-bordered">
+                            <div class="panel-body" style="margin:5px; padding:5px">
+                                <ul style="padding-left:20px">
+                                    @foreach ($phones as $item)
+                                    <li>{{ $item }} &nbsp; <a href="#" wire:click='removePhone({{ $item }})'><i
+                                                class="voyager-trash"></a></i></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

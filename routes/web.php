@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\Accounts\AccountsComponent;
 use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('countries/{country}/states', StatesComponent::class)->name('countries.states');
     Route::get('countries/{country}/states/{state}', CitiesComponent::class)->name('states.cities');
     Route::get('customers', CustomersComponent::class);
+
+    //Accounts
+    Route::get('account-management', AccountsComponent::class);
 
     //Sites
     Route::get('sities', SitesComponent::class);
