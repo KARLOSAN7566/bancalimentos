@@ -75,10 +75,10 @@
                                                         <td>{{ App\Site::find($partner->site_id)->description}}</td>
                                                         <td>
                                                             @switch($partner->type)
-                                                            @case('n')
+                                                            @case('natural')
                                                             Natural
                                                             @break
-                                                            @case('j')
+                                                            @case('juridica')
                                                             Jurídica
                                                             @break
                                                             @endswitch

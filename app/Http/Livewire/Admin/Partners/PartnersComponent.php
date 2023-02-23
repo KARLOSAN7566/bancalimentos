@@ -103,6 +103,25 @@ class PartnersComponent extends Component
         $this->type= '';
     }
 
+    public function edit($id)
+    {
+        $this->partnerId = $id;
+        $partner = Partner::find($id);
+        if ($partner != '') {
+            $this->firstname= $partner->firstname;
+            $this->lastname= $partner->lastname;
+            $this->identification= $partner->identification;
+            $this->birthday= $partner->birthday;
+            $this->genere= $partner->genere;
+            $this->class= $partner->class;
+            $this->sector= $partner->sector;
+            $this->family= $partner->family;
+            $this->group= $partner->group;
+            $this->site_id= $partner->site_id;
+            $this->type= $partner->type;
+        }
+    }
+
     public function update()
     {
         $this->validate([

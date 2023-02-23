@@ -241,10 +241,10 @@
                             <label class="is-required"><strong>Tipo Cuenta:</strong></label>
                             <div class="form-group">
                                 <label class="radio-inline">
-                                    <input wire:model="type" value="1" type="radio">
+                                    <input wire:model="type" value="natural" type="radio">
                                     Natural</label>
                                 <label class="radio-inline">
-                                    <input wire:model="type" value="2" type="radio">
+                                    <input wire:model="type" value="juridica" type="radio">
                                     Jurídica</label>
                             </div>
                             @error('genere')
