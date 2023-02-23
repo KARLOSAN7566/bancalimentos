@@ -45,8 +45,9 @@
                                                         <th>Familiares a cargo:</th>
                                                         <th>Grupo:</th>
                                                         <th>Sede:</th>
-                                                        {{-- <th>Creado por:</th>
-                                                        <th>Modificado por:</th> --}}
+                                                        <th>Tipo Cuenta:</th>
+                                                        <th>Creado por:</th>
+                                                        <th>Modificado por:</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -72,8 +73,17 @@
                                                         <td>{{ ucfirst($partner->family) }}</td>
                                                         <td>{{ App\PopulationGroup::find($partner->group)->name}}</td>
                                                         <td>{{ App\Site::find($partner->site_id)->description}}</td>
-                                                        {{-- <td>{{ \App\Models\User::find($partner->created_user_at)->name}}</td>
-                                                        <td>{{ \App\Models\User::find($partner->updated_user_id)->name}}</td> --}}
+                                                        <td>
+                                                            @switch($partner->type)
+                                                            @case('n')
+                                                            Natural
+                                                            @break
+                                                            @case('j')
+                                                            Jurídica
+                                                            @break
+                                                            @endswitch
+                                                        <td>{{ \App\Models\User::find($partner->created_user_id)->name}}</td>
+                                                        <td>{{ \App\Models\User::find($partner->updated_user_id)->name}}</td>
                                                         <td>
                                                             <button class="btn btn-primary" wire:click='edit({{ $partner->id }})' data-toggle="modal" data-target="#edit-modal">
                                                                 <i class="voyager-edit"></i>

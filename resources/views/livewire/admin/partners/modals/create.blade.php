@@ -236,6 +236,21 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label class="is-required"><strong>Tipo Cuenta:</strong></label>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input wire:model="type" value="1" type="radio">
+                                    Natural</label>
+                                <label class="radio-inline">
+                                    <input wire:model="type" value="2" type="radio">
+                                    Jurídica</label>
+                            </div>
+                            @error('genere')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                         {{-- <div class="form-group">
                             <label class="is-required"><strong>Notas: </strong></label>
                             <div class="input-group">

@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire\Admin\Partners;
 
-use App\EconomicActivity;
-use App\Partner;
-use App\PopulationGroup;
 use App\Site;
+use App\Partner;
 use Livewire\Component;
+use App\PopulationGroup;
+use App\EconomicActivity;
+use Illuminate\Support\Facades\Auth;
 
 class PartnersComponent extends Component
 {
     public $siteId, $group, $family, $sector, $class, $genere, $birthday, $identification, 
-    $lastname, $firstname, $partnerId, $site_id;
+    $lastname, $firstname, $partnerId, $site_id, $type;
     public $phones = [],
         $phone,
         $addresses = [],
@@ -50,7 +51,8 @@ class PartnersComponent extends Component
             'sector'=> 'required',
             'family'=> 'required',
             'group'=> 'required',
-            'site_id'=> 'required'
+            'site_id'=> 'required',
+            'type'=> 'required'
 
         ],[],[
             'firstname'=> 'nombres',
@@ -62,7 +64,8 @@ class PartnersComponent extends Component
             'sector'=> 'sector',
             'family'=> 'familiares',
             'group'=> 'grupo',
-            'site_id'=> 'ciudad'
+            'site_id'=> 'ciudad',
+            'type'=> 'tipo cuenta'
         ]);
 
         $partner=new Partner();
@@ -76,6 +79,9 @@ class PartnersComponent extends Component
         $partner->family= $this->family;
         $partner->group= $this->group;
         $partner->site_id= $this->site_id;
+        $partner->type= $this->type;
+        $partner->created_user_id= Auth::user()->id;
+        $partner->updated_user_id= Auth::user()->id;
 
         $partner->save();
         $this->resetInputFields();
@@ -94,6 +100,7 @@ class PartnersComponent extends Component
         $this->family= '';
         $this->group= '';
         $this->site_id= '';
+        $this->type= '';
     }
 
     public function update()
@@ -108,7 +115,8 @@ class PartnersComponent extends Component
             'sector'=> 'required',
             'family'=> 'required',
             'group'=> 'required',
-            'site_id'=> 'required'
+            'site_id'=> 'required',
+            'type'=> 'required'
 
         ],[],[
             'firstname'=> 'nombres',
@@ -120,7 +128,8 @@ class PartnersComponent extends Component
             'sector'=> 'sector',
             'family'=> 'familiares',
             'group'=> 'grupo',
-            'site_id'=> 'ciudad'
+            'site_id'=> 'ciudad',
+            'type'=> 'tipo cuenta'
         ]);
 
         $partner= Partner::find($this->partnerId);
@@ -134,6 +143,9 @@ class PartnersComponent extends Component
         $partner->family= $this->family;
         $partner->group= $this->group;
         $partner->site_id= $this->site_id;
+        $partner->type= $this->type;
+        $partner->created_user_id= Auth::user()->id;
+        $partner->updated_user_id= Auth::user()->id;
 
         $partner->update();
         $this->resetInputFields();
