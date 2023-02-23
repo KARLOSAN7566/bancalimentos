@@ -268,8 +268,8 @@
                         <div class="panel panel-bordered">
                             <div class="panel-body" style="margin:5px; padding:5px">
                                 <ul style="padding-left:20px">
-                                    @foreach ($phones as $item)
-                                    <li>{{ $item }} &nbsp; <a href="#" wire:click='removePhone({{ $item }})'><i
+                                    @foreach ($notes as $item)
+                                    <li>{{ $item }} &nbsp; <a href="#" wire:click='removeNote({{ $item }})'><i
                                                 class="voyager-trash"></a></i></li>
                                     @endforeach
                                 </ul>

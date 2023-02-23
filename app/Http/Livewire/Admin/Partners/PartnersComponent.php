@@ -7,6 +7,9 @@ use App\Partner;
 use Livewire\Component;
 use App\PopulationGroup;
 use App\EconomicActivity;
+use App\PartnersActivity;
+use App\PartnersAddress;
+use App\PartnersNote;
 use App\PartnersPhone;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,10 +22,9 @@ class PartnersComponent extends Component
         $addresses = [],
         $address,
         $activities = [],
-        $activity;
-
-    
-        
+        $activity,
+        $notes = [],
+        $note;
 
     public function render()
     {
@@ -91,30 +93,40 @@ class PartnersComponent extends Component
                 $phonePartner=new PartnersPhone();
                 $phonePartner->partner_id=$partner->id;
                 $phonePartner->phone=$phone;
-                $phone->save();
+                $phonePartner->save();
+            }
+        }
+        if ($this->addresses!=[]) {
+            foreach ($this->addresses as $address) {
+                $addressPartner= new PartnersAddress();
+                $addressPartner->partner_id=$partner->id;
+                $addressPartner->address=$address;
+                $addressPartner->save();
             }
         }
 
+        if ($this->activities!=[]) {
+            foreach ($this->activities as $activity) {
+                $activityPartner =new PartnersActivity();
+                $activityPartner->partner_id=$partner->id;
+                $activityPartner->activity_id=$partner->id;
+                $activityPartner->save();
+            }
+        }
 
+        if ($this->notes!=[]) {
+            foreach ($this->notes as $note) {
+                $notePartner = new PartnersNote();
+                $notePartner->partner_id=$partner->id;
+                $notePartner->note=$note;
+                $notePartner->save();
+            }
+        }
 
         $this->resetInputFields();
         $this->emit('close-modal');
     }
 
-    public function resetInputFields()
-    {
-        $this->firstname= '';
-        $this->lastname= '';
-        $this->identification= '';
-        $this->birthday= '';
-        $this->genere= '';
-        $this->class= '';
-        $this->sector= '';
-        $this->family= '';
-        $this->group= '';
-        $this->site_id= '';
-        $this->type= '';
-    }
 
     public function edit($id)
     {
@@ -132,6 +144,34 @@ class PartnersComponent extends Component
             $this->group= $partner->group;
             $this->site_id= $partner->site_id;
             $this->type= $partner->type;
+
+            //Phones
+            $phones=PartnersPhone::where('partner_id','=',$partner->id)->get();
+
+            if($phones!=''){
+                foreach ($phones as $phone) {
+                    array_push($this->phones,$phone->phone);
+                }
+            }
+            
+            //Address
+            $addresses=PartnersAddress::where('partner_id','=',$partner->id)->get();
+            if ($addresses!='') {
+                foreach ($addresses as $address) {
+                    array_push($this->addresses,$address->address);
+                }
+            }
+
+            //Activity
+            $activities=PartnersActivity::where('partner_id','=',$partner->id)->get();
+            if ($activities!='') {
+                foreach ($activities as $activity) {
+                    array_push($this->activities,$activity->activity);
+                }
+            }
+
+            //Note
+            
         }
     }
 
@@ -180,12 +220,75 @@ class PartnersComponent extends Component
         $partner->updated_user_id= Auth::user()->id;
 
         $partner->update();
+
+        //PHONES
+        $phones=PartnersPhone::where('partner_id','=',$partner->id)->get();
+
+        if($phones!=''){
+            foreach ($phones as $phone) {
+                PartnersPhone::find($phone->id)->delete();
+            }
+        }
+
+        if($this->phones!=[]){
+            foreach ($this->phones as $phone) {
+                $phonePartner=new PartnersPhone();
+                $phonePartner->partner_id=$partner->id;
+                $phonePartner->phone=$phone;
+                $phonePartner->save();
+            }
+        }
+
+
         $this->resetInputFields();
         $this->emit('close-modal');
 
 
     }
 
+    public function delete($id)
+    {
+        $this->partnerId=$id;
+    }
+
+    public function destroy()
+    {
+        $partner=Site::find($this->partnerId);
+        $partner->delete();
+        $this->resetInputFields();
+        $this->emit('close-modal');
+    }
+
+    public function resetInputFields()
+    {
+        $this->firstname= '';
+        $this->lastname= '';
+        $this->identification= '';
+        $this->birthday= '';
+        $this->genere= '';
+        $this->class= '';
+        $this->sector= '';
+        $this->family= '';
+        $this->group= '';
+        $this->site_id= '';
+        $this->type= '';
+        $this->phones = [];
+        $this->phone;
+        $this->addresses = [];
+        $this->address;
+        $this->activities = [];
+        $this->activity;
+        $this->notes = [];
+        $this->note;
+    }
+
+    public function cancel()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+        $this->resetInputFields();
+        $this->emit('close-modal');
+    }
 
     public function addPhone()
     {
@@ -256,29 +359,30 @@ class PartnersComponent extends Component
         }
     }
 
+    public function addNote()
+    {
+        $this->validate(
+            [
+                'note'=>'required'
+            ],[],
+            [
+                'note'=>'notas'
+            ]
+        );
+        array_push($this->notes, $this->note);
+        $this->note='';
+    }
+
+    public function removeNote($value)
+    {
+        if (($key= array_search($value, $this->notes)) !== false) {
+            unset($this->notes[$key]);
+            $this->notes = array_values($this->notes);
+        }
+    }
+
     public function hydrate()
     {
         $this->emit('select2');
-    }
-
-    public function delete($id)
-    {
-        $this->partnerId=$id;
-    }
-
-    public function destroy()
-    {
-        $partner=Site::find($this->partnerId);
-        $partner->delete();
-        $this->resetInputFields();
-        $this->emit('close-modal');
-    }
-
-    public function cancel()
-    {
-        $this->resetErrorBag();
-        $this->resetValidation();
-        $this->resetInputFields();
-        $this->emit('close-modal');
     }
 }
