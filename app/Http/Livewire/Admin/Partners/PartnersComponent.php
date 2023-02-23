@@ -75,7 +75,7 @@ class PartnersComponent extends Component
         $partner->sector= $this->sector;
         $partner->family= $this->family;
         $partner->group= $this->group;
-        $partner->site_id= $this->siteId;
+        $partner->site_id= $this->site_id;
 
         $partner->save();
         $this->resetInputFields();
@@ -94,6 +94,52 @@ class PartnersComponent extends Component
         $this->family= '';
         $this->group= '';
         $this->site_id= '';
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'firstname'=> 'required',
+            'lastname'=> 'required',
+            'identification'=> 'required',
+            'birthday'=> 'required',
+            'genere'=> 'required',
+            'class'=> 'required',
+            'sector'=> 'required',
+            'family'=> 'required',
+            'group'=> 'required',
+            'site_id'=> 'required'
+
+        ],[],[
+            'firstname'=> 'nombres',
+            'lastname'=> 'apellidos',
+            'identification'=> 'identificacion',
+            'birthday'=> 'cumpleaños',
+            'genere'=> 'genero',
+            'class'=> 'estrato',
+            'sector'=> 'sector',
+            'family'=> 'familiares',
+            'group'=> 'grupo',
+            'site_id'=> 'ciudad'
+        ]);
+
+        $partner= Partner::find($this->partnerId);
+        $partner->firstname= $this->firstname;
+        $partner->lastname= $this->lastname;
+        $partner->identification= $this->identification;
+        $partner->birthday= $this->birthday;
+        $partner->genere= $this->genere;
+        $partner->class= $this->class;
+        $partner->sector= $this->sector;
+        $partner->family= $this->family;
+        $partner->group= $this->group;
+        $partner->site_id= $this->site_id;
+
+        $partner->update();
+        $this->resetInputFields();
+        $this->emit('close-modal');
+
+
     }
 
 
