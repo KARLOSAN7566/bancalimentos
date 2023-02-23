@@ -11,7 +11,7 @@ use Livewire\Component;
 class PartnersComponent extends Component
 {
     public $siteId, $group, $family, $sector, $class, $genere, $birthday, $identification, 
-    $lastname, $firtsname;
+    $lastname, $firtsname, $partnerId;
     public $phones = [],
         $phone,
         $addresses = [],
@@ -26,12 +26,12 @@ class PartnersComponent extends Component
     {
         $economicActivities = EconomicActivity::all();
         $populationGroups = PopulationGroup::all();
-        $siteId = Site ::all();
+        $sites = Site::all();
 
         return view('livewire.admin.partners.partners-component', [
             'economicActivities' => $economicActivities,
             'populationGroups' => $populationGroups,
-            //'siteId'=> $siteId;
+            'sites' => $sites
 
         ]);
     }
@@ -64,6 +64,20 @@ class PartnersComponent extends Component
         ]);
 
         $partner=new Partner();
+        $partner->firtsname= $this->firtsname;
+        $partner->lastname= $this->lastname;
+        $partner->identification= $this->identification;
+        $partner->birthday= $this->birthday;
+        $partner->genere= $this->genere;
+        $partner->class= $this->class;
+        $partner->sector= $this->sector;
+        $partner->family= $this->family;
+        $partner->group= $this->group;
+        $partner->siteId= $this->siteId;
+
+        $partner->save();
+        $this->resetInputFields();
+        $this->emit('close-modal');
     }
 
 
@@ -139,5 +153,26 @@ class PartnersComponent extends Component
     public function hydrate()
     {
         $this->emit('select2');
+    }
+
+    public function delete($id)
+    {
+        $this->partnerId=$id;
+    }
+
+    public function destroy()
+    {
+        $partner=Site::find($this->partnerId);
+        $partner->delete();
+        $this->resetInputFields();
+        $this->emit('close-modal');
+    }
+
+    public function cancel()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+        $this->resetInputFields();
+        $this->emit('close-modal');
     }
 }

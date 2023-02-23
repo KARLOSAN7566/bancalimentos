@@ -228,7 +228,9 @@
                             <label class="is-required"><strong>Sede: </strong></label>
                             <select class="form-control" wire:model="siteId">
                                 <option value="">Seleccionar</option>
-
+                                @foreach ($sites as $item)
+                                    <option value="{{ $item->id }}">{{ $item->description }}</option>
+                                @endforeach
                             </select>
                             @error('siteId')
                             <small class="text-danger">{{ $message }}</small>
