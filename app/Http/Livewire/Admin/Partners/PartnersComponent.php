@@ -80,6 +80,20 @@ class PartnersComponent extends Component
         $this->emit('close-modal');
     }
 
+    public function resetInputFields()
+    {
+        $this->firtsname= '';
+        $this->lastname= '';
+        $this->identification= '';
+        $this->birthday= '';
+        $this->genere= '';
+        $this->class= '';
+        $this->sector= '';
+        $this->family= '';
+        $this->group= '';
+        $this->siteId= '';
+    }
+
 
     public function addPhone()
     {
