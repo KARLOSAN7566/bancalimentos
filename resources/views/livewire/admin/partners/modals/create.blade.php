@@ -35,8 +35,8 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="is-required"><strong>Nombres: </strong></label>
-                            <input type="text" class="form-control" wire:model="firtsname" placeholder="Nombres">
-                            @error('firtsname')
+                            <input type="text" class="form-control" wire:model="firstname" placeholder="Nombres">
+                            @error('firstname')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -226,7 +226,7 @@
                         </div>
                         <div class="form-group">
                             <label class="is-required"><strong>Sede: </strong></label>
-                            <select class="form-control" wire:model="siteId">
+                            <select class="form-control" wire:model="site_id">
                                 <option value="">Seleccionar</option>
                                 @foreach ($sites as $item)
                                     <option value="{{ $item->id }}">{{ $item->description }}</option>

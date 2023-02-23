@@ -11,7 +11,7 @@ use Livewire\Component;
 class PartnersComponent extends Component
 {
     public $siteId, $group, $family, $sector, $class, $genere, $birthday, $identification, 
-    $lastname, $firtsname, $partnerId;
+    $lastname, $firstname, $partnerId, $site_id;
     public $phones = [],
         $phone,
         $addresses = [],
@@ -27,11 +27,13 @@ class PartnersComponent extends Component
         $economicActivities = EconomicActivity::all();
         $populationGroups = PopulationGroup::all();
         $sites = Site::all();
+        $partners= Partner::all();
 
         return view('livewire.admin.partners.partners-component', [
             'economicActivities' => $economicActivities,
             'populationGroups' => $populationGroups,
-            'sites' => $sites
+            'sites' => $sites,
+            'partners' => $partners
 
         ]);
     }
@@ -39,7 +41,7 @@ class PartnersComponent extends Component
     public function store()
     {
         $this->validate([
-            'firtsname'=> 'required',
+            'firstname'=> 'required',
             'lastname'=> 'required',
             'identification'=> 'required',
             'birthday'=> 'required',
@@ -48,10 +50,10 @@ class PartnersComponent extends Component
             'sector'=> 'required',
             'family'=> 'required',
             'group'=> 'required',
-            'siteId'=> 'required'
+            'site_id'=> 'required'
 
         ],[],[
-            'firtsname'=> 'nombres',
+            'firstname'=> 'nombres',
             'lastname'=> 'apellidos',
             'identification'=> 'identificacion',
             'birthday'=> 'cumpleaños',
@@ -60,11 +62,11 @@ class PartnersComponent extends Component
             'sector'=> 'sector',
             'family'=> 'familiares',
             'group'=> 'grupo',
-            'siteId'=> 'ciudad'
+            'site_id'=> 'ciudad'
         ]);
 
         $partner=new Partner();
-        $partner->firtsname= $this->firtsname;
+        $partner->firstname= $this->firstname;
         $partner->lastname= $this->lastname;
         $partner->identification= $this->identification;
         $partner->birthday= $this->birthday;
@@ -73,7 +75,7 @@ class PartnersComponent extends Component
         $partner->sector= $this->sector;
         $partner->family= $this->family;
         $partner->group= $this->group;
-        $partner->siteId= $this->siteId;
+        $partner->site_id= $this->siteId;
 
         $partner->save();
         $this->resetInputFields();
@@ -82,7 +84,7 @@ class PartnersComponent extends Component
 
     public function resetInputFields()
     {
-        $this->firtsname= '';
+        $this->firstname= '';
         $this->lastname= '';
         $this->identification= '';
         $this->birthday= '';
@@ -91,7 +93,7 @@ class PartnersComponent extends Component
         $this->sector= '';
         $this->family= '';
         $this->group= '';
-        $this->siteId= '';
+        $this->site_id= '';
     }
 
 
