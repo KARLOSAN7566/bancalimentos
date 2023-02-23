@@ -97,8 +97,9 @@
                                         <div class="col-lg-3" style='padding-top:22px'>
                                             <button class="btn btn-primary" wire:click='searchPartner'><i
                                                     class="fa fa-search"></i>&nbsp;Buscar</button>
-                                            <button class="btn btn-success"><i
-                                                    class="fa fa-plus-square"></i>&nbsp;Nuevo</button>
+                                                    @livewire('admin.partners.add-partner-component')
+                                            {{-- <button class="btn btn-success"><i
+                                                    class="fa fa-plus-square"></i>&nbsp;Nuevo</button> --}}
                                         </div>
                                     </div>
                                 </div>

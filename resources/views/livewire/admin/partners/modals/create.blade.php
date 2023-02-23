@@ -105,7 +105,7 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label class="is-required"><strong>Teléfono: </strong></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" wire:model='phone'>
@@ -129,10 +129,10 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif --}}
+                        @endif
 
 
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label class="is-required"><strong>Dirección de residencia: </strong></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" wire:model='address'>
@@ -156,10 +156,10 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif --}}
+                        @endif
 
 
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label class="is-required"><strong>Actividad económica: </strong></label>
                             <div class="row no-margin-bottom">
                                 <div class="col-lg-12">
@@ -202,7 +202,7 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif --}}
+                        @endif
 
 
                         <div class="form-group">
@@ -251,7 +251,7 @@
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label class="is-required"><strong>Notas: </strong></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" wire:model='note'>
@@ -275,7 +275,7 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif --}}
+                        @endif
                     </div>
                 </div>
             </div>

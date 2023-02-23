@@ -7,6 +7,7 @@ use App\Partner;
 use Livewire\Component;
 use App\PopulationGroup;
 use App\EconomicActivity;
+use App\PartnersPhone;
 use Illuminate\Support\Facades\Auth;
 
 class PartnersComponent extends Component
@@ -84,6 +85,18 @@ class PartnersComponent extends Component
         $partner->updated_user_id= Auth::user()->id;
 
         $partner->save();
+
+        if($this->phones!=[]){
+            foreach ($this->phones as $phone) {
+                $phonePartner=new PartnersPhone();
+                $phonePartner->partner_id=$partner->id;
+                $phonePartner->phone=$phone;
+                $phone->save();
+            }
+        }
+
+
+
         $this->resetInputFields();
         $this->emit('close-modal');
     }
