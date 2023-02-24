@@ -24,17 +24,21 @@ class PartnersComponent extends Component
         $activities = [],
         $activity,
         $notes = [],
-        $note;
+        $note,
+        $economicActivities=[];
+
+    public function mount(){
+        /* $this->economicActivities = EconomicActivity::all(); */
+    }
 
     public function render()
     {
-        $economicActivities = EconomicActivity::all();
+       
         $populationGroups = PopulationGroup::all();
         $sites = Site::all();
         $partners= Partner::all();
 
         return view('livewire.admin.partners.partners-component', [
-            'economicActivities' => $economicActivities,
             'populationGroups' => $populationGroups,
             'sites' => $sites,
             'partners' => $partners
@@ -109,7 +113,7 @@ class PartnersComponent extends Component
             foreach ($this->activities as $activity) {
                 $activityPartner =new PartnersActivity();
                 $activityPartner->partner_id=$partner->id;
-                $activityPartner->activity_id=$partner->id;
+                $activityPartner->activity_id=$activity->id;/////
                 $activityPartner->save();
             }
         }
@@ -163,7 +167,11 @@ class PartnersComponent extends Component
             }
 
             //Activity
+
             $activities=PartnersActivity::where('partner_id','=',$partner->id)->get();
+
+
+
             if ($activities!='') {
                 foreach ($activities as $activity) {
                     array_push($this->activities,$activity->activity);
@@ -171,6 +179,13 @@ class PartnersComponent extends Component
             }
 
             //Note
+            $notes=PartnersNote::where('partner_id','=',$partner->id)->get();
+            if ($notes!='') {
+                foreach ($notes as $note) {
+                    array_push($this->notes,$note->note);
+                }
+            }
+            
             
         }
     }
@@ -236,6 +251,51 @@ class PartnersComponent extends Component
                 $phonePartner->partner_id=$partner->id;
                 $phonePartner->phone=$phone;
                 $phonePartner->save();
+            }
+        }
+        //Address
+        $addresses=PartnersAddress::where('partner_id','=',$partner->id)->get();
+        if ($addresses!='') {
+            foreach ($addresses as $address) {
+                PartnersAddress::find($address->id)->delete();
+            }
+        }
+        if ($this->addresses!=[]) {
+            foreach ($this->addresses as $address) {
+                $addressPartner= new PartnersAddress();
+                $addressPartner->partner_id=$partner->id;
+                $addressPartner->address=$address;
+                $addressPartner->save();
+            }
+        }
+        //Activity
+        $activities=PartnersActivity::where('partner_id','=',$partner->id)->get();
+        if ($activities!='') {
+            foreach ($activities as $activity) {
+                PartnersActivity::find($activity->id)->delete();
+            }
+        }
+        if ($this->activities!=[]) {
+            foreach ($this->activities as $activity) {
+                $activityPartner =new PartnersActivity();
+                $activityPartner->partner_id=$partner->id;
+                $activityPartner->activity_id=$activity->id;//////
+                $activityPartner->save();
+            }
+        }
+        //Note
+        $notes=PartnersNote::where('partner_id','=',$partner->id)->get();
+        if ($notes!='') {
+            foreach ($notes as $note) {
+                PartnersNote::find($note->id)->delete();
+            }
+        }
+        if ($this->notes!=[]) {
+            foreach ($this->notes as $note) {
+                $notePartner = new PartnersNote();
+                $notePartner->partner_id=$partner->id;
+                $notePartner->note=$note;
+                $notePartner->save();
             }
         }
 

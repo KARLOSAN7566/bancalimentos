@@ -1,8 +1,9 @@
-<div  wire:ignore.self class="modal modal-info fade" tabindex="-1" id="edit-modal" role="dialog">
+<div wire:ignore.self class="modal modal-info fade" tabindex="-1" id="edit-modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" aria-label="{{ __('voyager::generic.close') }}" wire:click="cancel()"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" aria-label="{{ __('voyager::generic.close') }}"
+                    wire:click="cancel()"><span aria-hidden="true">&times;</span></button>
                 <h5 class="modal-title"><i class="voyager-edit"></i> Editar Partner</h5>
             </div>
             <div class="modal-body">
@@ -147,7 +148,8 @@
                                             @endforeach
                                         </select>
                                         <a href="#" class="input-group-addon"
-                                            style="color:#fff;background-color:#2ECC71;border:0px" wire:click='addActivity'>
+                                            style="color:#fff;background-color:#2ECC71;border:0px"
+                                            wire:click='addActivity'>
                                             <i class="voyager-plus"></i>
                                         </a>
                                     </div>
@@ -158,7 +160,7 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        @if (count($activities) > 0)
+                       {{--  @if (count($activities) > 0)
                         <div class="panel panel-bordered">
                             <div class="panel-body" style="margin:5px; padding:5px">
                                 <ul style="padding-left:20px">
@@ -177,7 +179,7 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif
+                        @endif --}}
 
 
                         <div class="form-group">
@@ -192,7 +194,7 @@
                             <select class="form-control" wire:model="group">
                                 <option value="">Seleccionar</option>
                                 @foreach ($populationGroups as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                             @error('group')
@@ -204,7 +206,7 @@
                             <select class="form-control" wire:model="site_id">
                                 <option value="">Seleccionar</option>
                                 @foreach ($sites as $item)
-                                    <option value="{{ $item->id }}">{{ $item->description }}</option>
+                                <option value="{{ $item->id }}">{{ $item->description }}</option>
                                 @endforeach
                             </select>
                             @error('siteId')
@@ -256,7 +258,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary pull-right" wire:click="update()">Guardar</button>
-                <button type="button" class="btn btn-default pull-right" wire:click="cancel()">{{ __('voyager::generic.cancel') }}</button>
+                <button type="button" class="btn btn-default pull-right" wire:click="cancel()">{{
+                    __('voyager::generic.cancel') }}</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
