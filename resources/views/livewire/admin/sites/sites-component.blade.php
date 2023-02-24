@@ -3,6 +3,15 @@
     @include('livewire.admin.sites.modals.edit')
     @include('livewire.admin.sites.modals.delete')
 
+    <style>
+        .sm-b {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
+
     @section('page_title', 'Sedes | Bancalimentos' )
     @section('page_header')
 
@@ -33,10 +42,11 @@
                                         <table id="dataTable" class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Id</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Dirección</th>
-                                                    <th>Teléfono</th>
+                                                    <th class="thwidth"><small>Id</small></th>
+                                                    <th class="thwidth"><small>Descripcion</small></th>
+                                                    <th class="thwidth"><small>Dirección</small></th>
+                                                    <th class="thwidth"><small>Teléfono</small></th>
+                                                    <th><small>Acciones</small></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -47,11 +57,11 @@
                                                     <td>{{ $site->address }}</td>
                                                     <td>{{ $site->phones }}</td>
                                                     <td>
-                                                        <button class="btn btn-primary" wire:click='edit({{ $site->id }})' data-toggle="modal" data-target="#edit-modal">
+                                                        <button class="btn btn-primary sm-b" wire:click='edit({{ $site->id }})' data-toggle="modal" data-target="#edit-modal">
                                                             <i class="voyager-edit"></i>
                                                             Editar
                                                         </button>
-                                                        <button class="btn btn-danger" wire:click='delete({{ $site->id }})' data-toggle="modal" data-target="#delete-modal">
+                                                        <button class="btn btn-danger sm-b" wire:click='delete({{ $site->id }})' data-toggle="modal" data-target="#delete-modal">
                                                             <i class="voyager-trash"></i>
                                                             Eliminar
                                                         </button>

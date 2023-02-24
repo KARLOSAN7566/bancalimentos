@@ -3,6 +3,15 @@
     @include('livewire.admin.settings.states-modals.edit')
     @include('livewire.admin.settings.states-modals.delete')
 
+    <style>
+        .sm-b {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
+
     @section('page_title', 'Departamentos | Bancalimentos')
     @section('page_header')
 
@@ -35,9 +44,9 @@
                                             <table id="dataTable" class="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>Id</th>
-                                                        <th>Nombre</th>
-                                                        <th>Acciones</th>
+                                                        <th class="thwidth"><small>Id</small></th>
+                                                        <th class="thwidth"><small>Nombre</small></th>
+                                                        <th><small>Acciones</small></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -46,13 +55,13 @@
                                                             <td>{{ $state->id }}</td>
                                                             <td>{{ $state->name }}</td>
                                                             <td>
-                                                                <button class="btn btn-primary"
+                                                                <button class="btn btn-primary sm-b"
                                                                     wire:click='edit({{ $state->id }})'
                                                                     data-toggle="modal" data-target="#edit-modal">
                                                                     <i class="voyager-edit"></i>
                                                                     Editar
                                                                 </button>
-                                                                <button class="btn btn-danger"
+                                                                <button class="btn btn-danger sm-b"
                                                                     wire:click='delete({{ $state->id }})'
                                                                     data-toggle="modal" data-target="#delete-modal">
                                                                     <i class="voyager-trash"></i>
@@ -60,7 +69,7 @@
                                                                 </button>
                                                                 <a
                                                                     href="{{ route('states.cities', ['country' => $countryId, 'state' => $state->id]) }}">
-                                                                    <button class="btn btn-warning">Municipios</button>
+                                                                    <button class="btn btn-warning sm-b">Municipios</button>
                                                                 </a>
                                                             </td>
                                                         </tr>

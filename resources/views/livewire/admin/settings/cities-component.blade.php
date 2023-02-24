@@ -3,6 +3,15 @@
     @include('livewire.admin.settings.cities-modals.edit')
     @include('livewire.admin.settings.cities-modals.delete')
 
+    <style>
+        .sm-b {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
+
     @section('page_title', 'Municipios | Bancalimentos')
     @section('page_header')
 
@@ -33,9 +42,9 @@
                                             <table id="dataTable" class="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>Id</th>
-                                                        <th>Nombre</th>
-                                                        <th>Acciones</th>
+                                                        <th class="thwidth"><small>Id</small></th>
+                                                        <th class="thwidth"><small>Nombre</small></th>
+                                                        <th class="thwidth"><small>Acciones</small></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -44,12 +53,12 @@
                                                             <td>{{ $city->id }}</td>
                                                             <td>{{ $city->name }}</td>
                                                             <td>
-                                                                <button class="btn btn-primary" wire:click='edit({{ $city->id }})'
+                                                                <button class="btn btn-primary sm-b" wire:click='edit({{ $city->id }})'
                                                                     data-toggle="modal" data-target="#edit-modal">
                                                                     <i class="voyager-edit"></i>
                                                                     Editar
                                                                 </button>
-                                                                <button class="btn btn-danger" wire:click='delete({{ $city->id }})'
+                                                                <button class="btn btn-danger sm-b" wire:click='delete({{ $city->id }})'
                                                                     data-toggle="modal" data-target="#delete-modal">
                                                                     <i class="voyager-trash"></i>
                                                                     Eliminar

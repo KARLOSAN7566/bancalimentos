@@ -51,6 +51,8 @@
                                                         <th class="thwidth"><small>Género</small></th>
                                                         <th class="thwidth"><small>Telefónos</small></th>
                                                         <th class="thwidth"><small>Direcciones</small></th>
+                                                        <th class="thwidth"><small>Actívidades</small></th>
+                                                        <th class="thwidth"><small>Nota</small></th>
                                                         <th class="thwidth"><small>Estrato</small></th>
                                                         <th class="thwidth"><small>Sector</small></th>
                                                         <th class="thwidth"><small>Familiares a cargo</small></th>
@@ -94,6 +96,24 @@
                                                                 @foreach ($addressesPartners as $address)
                                                                 @if ($address->partner_id==$partner->id)
                                                                 <li>{{ $address->address }}</li>
+                                                                @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </td>
+                                                        <td>
+                                                            <ul>
+                                                                @foreach ($activitiesPartners as $activity)
+                                                                @if ($activity->partner_id==$partner->id)
+                                                                <li>{{ $activity->activity_id }}</li>
+                                                                @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </td>
+                                                        <td>
+                                                            <ul>
+                                                                @foreach ($notesPartners as $note)
+                                                                @if ($note->partner_id==$partner->id)
+                                                                <li>{{ $note->note }}</li>
                                                                 @endif
                                                                 @endforeach
                                                             </ul>

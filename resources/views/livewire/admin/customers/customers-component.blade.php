@@ -3,6 +3,15 @@
     @include('livewire.admin.customers.modals.edit')
     @include('livewire.admin.customers.modals.delete')
 
+    <style>
+        .sm-b {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
+
 
     @section('page_title', 'Clientes | Bancalimentos' )
     @section('page_header')
@@ -30,20 +39,21 @@
                             <table id="dataTable" class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Nombres</th>
-                                        <th>Apellidos</th>
-                                        <th>Tipo Identificación</th>
-                                        <th>Numero Identificación</th>
-                                        <th>Genero</th>
-                                        <th>Dirección</th>
-                                        <th>País</th>
-                                        <th>Departamento</td>
-                                        <th>Ciudad</th>
-                                        <th>Teléfono</th>
-                                        <th>WhatsApp</th>
-                                        <th>Correo Electrónico</th>
-                                        <th>Usuario</th>
+                                        <th class="thwidth"><small>Id</small></th>
+                                        <th class="thwidth"><small>Nombres</small></th>
+                                        <th class="thwidth"><small>Apellidos</small></th>
+                                        <th class="thwidth"><small>Tipo Identificación</small></th>
+                                        <th class="thwidth"><small>Numero Identificación</small></th>
+                                        <th class="thwidth"><small>Genero</small></th>
+                                        <th class="thwidth"><small>Dirección</small></th>
+                                        <th class="thwidth"><small>País</small></th>
+                                        <th class="thwidth"><small>Departamento</small></td>
+                                        <th class="thwidth"><small>Ciudad</small></th>
+                                        <th class="thwidth"><small>Teléfono</small></th>
+                                        <th class="thwidth"><small>WhatsApp</small></th>
+                                        <th class="thwidth"><small>Correo Electrónico</small></th>
+                                        {{-- <th class="thwidth"><small>Usuario</small></th> --}}
+                                        <th><small>Acciones</small></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,11 +91,13 @@
                                         <td>{{ $customer->whatsapp }}</td>
                                         <td>{{ $customer->email }}</td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click='edit({{ $customer->id }})' data-toggle="modal" data-target="#edit-modal">
+                                        {{-- <td>{{ \App\Models\User::find($customer->created_user_id)->name}}
+                                        </td> --}}
+                                            <button class="btn btn-primary sm-b" wire:click='edit({{ $customer->id }})' data-toggle="modal" data-target="#edit-modal">
                                                 <i class="voyager-edit"></i>
                                                 Editar
                                             </button>
-                                            <button class="btn btn-danger" wire:click='delete({{ $customer->id }})' data-toggle="modal" data-target="#delete-modal">
+                                            <button class="btn btn-danger sm-b" wire:click='delete({{ $customer->id }})' data-toggle="modal" data-target="#delete-modal">
                                                 <i class="voyager-trash"></i>
                                                 Eliminar
                                             </button>

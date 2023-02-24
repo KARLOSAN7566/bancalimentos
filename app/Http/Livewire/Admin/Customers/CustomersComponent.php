@@ -9,6 +9,7 @@ use App\Customer;
 use Livewire\Response;
 use Livewire\Component;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomersComponent extends Component
 {
@@ -100,6 +101,7 @@ class CustomersComponent extends Component
         $customer->phone = $this->phone;
         $customer->whatsapp = $this->whatsapp;
         $customer->email = $this->email;
+        // $customer->created_user_id= Auth::user()->id;
 
         $customer->save();
         $this->resetInputFields();

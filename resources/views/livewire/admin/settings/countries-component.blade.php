@@ -2,6 +2,15 @@
     @include('livewire.admin.settings.countries-modals.create')
     @include('livewire.admin.settings.countries-modals.edit')
     @include('livewire.admin.settings.countries-modals.delete')
+
+    <style>
+        .sm-b {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
     
     @section('page_title', 'Paises | Bancalimentos' )
     @section('page_header')
@@ -33,9 +42,9 @@
                                             <table id="dataTable" class="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>Id</th>
-                                                        <th>Nombre</th>
-                                                        <th>Acciones</th>
+                                                        <th class="thwidth"><small>Id</small></th>
+                                                        <th class="thwidth"><small>Nombre</small></th>
+                                                        <th class="thwidth"><small>Acciones</small></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -44,16 +53,16 @@
                                                         <td>{{ $country->id }}</td>
                                                         <td>{{ $country->name }}</td>
                                                         <td>
-                                                            <button class="btn btn-primary" wire:click='edit({{ $country->id }})' data-toggle="modal" data-target="#edit-modal"> 
+                                                            <button class="btn btn-primary sm-b" wire:click='edit({{ $country->id }})' data-toggle="modal" data-target="#edit-modal"> 
                                                                 <i class="voyager-edit"></i>
                                                                 Editar
                                                             </button>
-                                                            <button class="btn btn-danger" wire:click='delete({{ $country->id }})' data-toggle="modal" data-target="#delete-modal"> 
+                                                            <button class="btn btn-danger sm-b" wire:click='delete({{ $country->id }})' data-toggle="modal" data-target="#delete-modal"> 
                                                                 <i class="voyager-trash"></i>
                                                                 Eliminar
                                                             </button>
                                                             <a href="{{ route('countries.states', ['country'=>$country->id]) }}">
-                                                            <button class="btn btn-warning">Departamentos</button>
+                                                            <button class="btn btn-warning sm-b">Departamentos</button>
                                                             </a>
                                                         </td>
                                                     </tr>

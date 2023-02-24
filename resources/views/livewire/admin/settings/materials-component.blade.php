@@ -2,6 +2,15 @@
     @include('livewire.admin.settings.materials-modals.create')
     @include('livewire.admin.settings.materials-modals.edit')
     @include('livewire.admin.settings.materials-modals.delete')
+
+    <style>
+        .sm-b {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
     
     @section('page_title', 'Materiales | Bancalimentos' )
     @section('page_header')
@@ -33,11 +42,12 @@
                                         <table id="dataTable" class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Id</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Puntos por Kilogramo</th>
-                                                    <th>Creado por:</th>
-                                                    <th>Actualizado por:</th>
+                                                    <th class="thwidth"><small>Id</small></th>
+                                                    <th class="thwidth"><small>Descripcion</small></th>
+                                                    <th class="thwidth"><small>Puntos por Kilogramo</small></th>
+                                                    <th class="thwidth"><small>Creado por</small></th>
+                                                    <th class="thwidth"><small>Actualizado por</small></th>
+                                                    <th><small>Acciones</small></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -49,11 +59,11 @@
                                                     <td>{{ $material->created_user_id }}</td>
                                                     <td>{{ $material->updated_user_id }}</td>
                                                     <td>
-                                                        <button class="btn btn-primary" wire:click='edit({{ $material->id }})' data-toggle="modal" data-target="#edit-modal">
+                                                        <button class="btn btn-primary sm-b" wire:click='edit({{ $material->id }})' data-toggle="modal" data-target="#edit-modal">
                                                             <i class="voyager-edit"></i>
                                                             Editar
                                                         </button>
-                                                        <button class="btn btn-danger" wire:click='delete({{ $material->id }})' data-toggle="modal" data-target="#delete-modal">
+                                                        <button class="btn btn-danger sm-b" wire:click='delete({{ $material->id }})' data-toggle="modal" data-target="#delete-modal">
                                                             <i class="voyager-trash"></i>
                                                             Eliminar
                                                         </button>

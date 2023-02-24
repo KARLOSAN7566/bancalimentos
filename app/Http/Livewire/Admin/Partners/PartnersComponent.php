@@ -27,6 +27,7 @@ class PartnersComponent extends Component
         $activitiesPartners=[],
         $activity,
         $notes = [],
+        $notesPartners=[],
         $note,
         $economicActivities=[];
 
@@ -34,6 +35,8 @@ class PartnersComponent extends Component
         $this->economicActivities = EconomicActivity::all();
         $this->phonesPartners=PartnersPhone::all();
         $this->addressesPartners = PartnersAddress::all();
+        $this->activitiesPartners=PartnersActivity::all();
+        $this->notesPartners=PartnersNote::all();
     }
 
     public function render()

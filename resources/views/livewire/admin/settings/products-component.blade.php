@@ -3,6 +3,15 @@
     @include('livewire.admin.settings.products-modals.edit')
     @include('livewire.admin.settings.products-modals.delete')
 
+    <style>
+        .sm-b {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
+
     @section('page_title', 'Productos | Bancalimentos' )
     @section('page_header')
 
@@ -33,13 +42,14 @@
                                         <table id="dataTable" class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Id</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Detalles</th>
-                                                    <th>Presentación</th>
-                                                    <th>Peso en gramos</th>
-                                                    <th>Creado por:</th>
-                                                    <th>Actualizado por:</th>
+                                                    <th class="thwidth"><small>Id</small></th>
+                                                    <th class="thwidth"><small>Descripcion</small></th>
+                                                    <th class="thwidth"><small>Detalles</small></th>
+                                                    <th class="thwidth"><small>Presentación</small></th>
+                                                    <th class="thwidth"><small>Peso en gramos</small></th>
+                                                    <th class="thwidth"><small>Creado por</small></th>
+                                                    <th class="thwidth"><small>Actualizado por</small></th>
+                                                    <th><small>Acciones</small></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -53,15 +63,11 @@
                                                     <td>{{ \App\Models\User::find($product->created_user_id)->name}}</td>
                                                     <td>{{ \App\Models\User::find($product->updated_user_id)->name}}</td>
                                                     <td>
-                                                        <button class="btn btn-primary" wire:click='edit({{ $product->id }})' data-toggle="modal" data-target="#edit-modal">
+                                                        <button class="btn btn-primary sm-b" wire:click='edit({{ $product->id }})' data-toggle="modal" data-target="#edit-modal">
                                                             <i class="voyager-edit"></i>
                                                             Editar
                                                         </button>
-                                                        <button class="btn btn-danger" wire:click='delete({{ $product->id }})' data-toggle="modal" data-target="#delete-modal">
-                                                            <i class="voyager-trash"></i>
-                                                            Eliminar
-                                                        </button>
-                                                        <button class="btn btn-danger" wire:click='delete({{ $product->id }})' data-toggle="modal" data-target="#delete-modal">
+                                                        <button class="btn btn-danger sm-b" wire:click='delete({{ $product->id }})' data-toggle="modal" data-target="#delete-modal">
                                                             <i class="voyager-trash"></i>
                                                             Eliminar
                                                         </button>
