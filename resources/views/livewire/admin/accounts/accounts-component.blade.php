@@ -84,23 +84,28 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="panel panel-bordered" style="padding:10px;margin-bottom:0px;padding-top:0px">
+                                <div class="panel panel-bordered"
+                                    style="padding:10px;margin-bottom:0px;padding-top:0px">
                                     <div class="row no-margin-bottom">
                                         <div class="col-lg-10" style="margin-bottom:0px;">
                                             <label><strong>Buscar aliado
                                                     {{ $type == '1' ? '(Cédula de ciudadania)' : '(NIT)' }}:</strong></label>
-                                            <input type="text" class="form-control" wire:model='searchPartnerField' wire:keydown.enter="searchPartner">
+                                            <input type="text" class="form-control" wire:model='searchPartnerField'
+                                                wire:keydown.enter="searchPartner">
                                             @error('searchPartnerField')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-2" style='padding-top:22px;padding-left:0px;margin-bottom:0px'>
+                                        <div class="col-lg-2"
+                                            style='padding-top:22px;padding-left:0px;margin-bottom:0px'>
                                             <div class="row no-margin-bottom">
-                                                <div class="col-lg-6 text-center" style="padding-left:5px;padding-right:5px;margin-bottom:0px">
+                                                <div class="col-lg-6 text-center"
+                                                    style="padding-left:5px;padding-right:5px;margin-bottom:0px">
                                                     <button class="btn btn-primary" wire:click='searchPartner'><i
-                                                        class="fa fa-search"></i>&nbsp;Buscar</button>
+                                                            class="fa fa-search"></i>&nbsp;Buscar</button>
                                                 </div>
-                                                <div class="col-lg-6 text-center" style="padding-left:5px;padding-right:5px;margin-bottom:0px">
+                                                <div class="col-lg-6 text-center"
+                                                    style="padding-left:5px;padding-right:5px;margin-bottom:0px">
                                                     @livewire('admin.partners.add-partner-component')
                                                 </div>
                                             </div>
@@ -115,7 +120,10 @@
                                     <div class="panel-heading">
                                         <div class="row no-margin-bottom">
                                             <div class="col-lg-12">
-                                                <h5>Información de aliado</h5>
+                                               
+                                                <h5 style="margin-bottom:0px">Información de aliado&emsp;<button class="btn btn-warning sm-b"><i
+                                                    class="fa fa-pencil-square-o"></i>&nbsp;Editar</button></h5>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -125,166 +133,175 @@
                                             <div class="col-lg-12" style="padding:0px">
                                                 <div class="row no-margin-bottom">
                                                     <div class="col-lg-3" style="margin-bottom:0px">
-                                                        <label style="font-weight:bold">Número de identificación</label>
-                                                        <p>{{ $partner->identification }}</p>
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Número de
+                                                                identificación</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{ $partner->identification }}</p>
                                                     </div>
                                                     <div class="col-lg-3" style="margin-bottom:0px">
-                                                        <label style="font-weight:bold">Nombres</label>
-                                                        <p>{{ $partner->firstname }}</p>
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Nombres</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{ $partner->firstname }}</p>
                                                     </div>
                                                     <div class="col-lg-3" style="margin-bottom:0px">
-                                                        <label style="font-weight:bold">Apellidos</label>
-                                                        <p>{{ $partner->lastname }}</p>
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Apellidos</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{ $partner->lastname }}</p>
                                                     </div>
                                                     <div class="col-lg-3" style="margin-bottom:0px">
-                                                        <label style="font-weight:bold">Fecha de nacimiento</label>
-                                                        <p>{{ $partner->birthday }}</p>
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Fecha de nacimiento</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{ $partner->birthday }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row no-margin-bottom">
                                                     <div class="col-lg-3">
-                                                        <label style="font-weight:bold">Genero</label>
-                                                        <p>
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Genero</li></small>
+                                                        </label>
+                                                        <p>&emsp;
                                                             @switch($partner->genere)
-                                                                @case('m')
-                                                                Masculino
-                                                                @break
+                                                            @case('m')
+                                                            Masculino
+                                                            @break
 
-                                                                @case('f')
-                                                                Femenino
-                                                                @break
+                                                            @case('f')
+                                                            Femenino
+                                                            @break
 
-                                                                @case('o')
-                                                                Otro
-                                                                @break
-                                                                @endswitch
+                                                            @case('o')
+                                                            Otro
+                                                            @break
+                                                            @endswitch
                                                         </p>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label style="font-weight:bold">Estrato</label>
-                                                        <p>{{ $partner->class }}</p>
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Estrato</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{ $partner->class }}</p>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label style="font-weight:bold">Sector</label>
-                                                        <p>{{ $partner->sector }}</p>
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Sector</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{ $partner->sector }}</p>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label style="font-weight:bold">Personas nucleo familiar</label>
-                                                        <p>{{ $partner->family }}</p>
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Personas nucleo
+                                                                familiar</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{ $partner->family }}</p>
                                                     </div>
                                                 </div>
-                                                {{-- <table class="table table-bordered">
-                                                
-                                                    <thead>
-                                                        <tr>
-                                                            <th width='25%'>Genero</th>
-                                                            <th width='25%'>Estrato</th>
-                                                            <th width='25%'>Sector</th>
-                                                            <th width='25%'>Personas nucleo familiar</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                @switch($partner->genere)
-                                                                @case('m')
-                                                                Masculino
-                                                                @break
-
-                                                                @case('f')
-                                                                Femenino
-                                                                @break
-
-                                                                @case('o')
-                                                                Otro
-                                                                @break
-                                                                @endswitch
-                                                            </td>
-                                                            <td>{{ $partner->class }}</td>
-                                                            <td>{{ $partner->sector }}</td>
-                                                            <td>{{ $partner->family }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <thead>
-                                                        <tr>
-                                                            <th width='25%'>Grupo poblacional</th>
-                                                            <th width='25%'>Sede</th>
-                                                            <th width='25%'>Fecha de creación</th>
-                                                            <th width='25%'>Creado por</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>@foreach ($populationGroups as $item)
-                                                                @if ($item->id==$partner->group)
-                                                                {{ $item->name }}
-                                                                @break
+                                                <div class="row no-margin-bottom">
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Grupo poblacional</li></small>
+                                                        </label>
+                                                        <p>&emsp;
+                                                            @foreach ($populationGroups as $item)
+                                                            @if ($item->id == $partner->group)
+                                                            {{ $item->name }}
+                                                            @break
+                                                            @endif
+                                                            @endforeach
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Sede</li></small>
+                                                        </label>
+                                                        <p>&emsp;
+                                                            @foreach ($sites as $item)
+                                                            @if ($item->id == $partner->site_id)
+                                                            {{ $item->description }}
+                                                            @break
+                                                            @endif
+                                                            @endforeach
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Fecha de creación</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{ date('Y-m-d H:i:s', strtotime($item->created_at)) }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Creado por</li></small>
+                                                        </label>
+                                                        <p>&emsp;{{
+                                                            \App\Models\User::find($partner->created_user_id)->name }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-margin-bottom">
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Actividades
+                                                                económicas</li></small>
+                                                        </label>
+                                                        <p>&emsp;
+                                                        <ul>
+                                                            @foreach ($activities as $item)
+                                                            <li>
+                                                                @foreach ($ciiu as $code)
+                                                                @if ($code->id == $item->activity_id)
+                                                                {{ $code->name }}
                                                                 @endif
                                                                 @endforeach
-                                                            </td>
-                                                            <td>@foreach ($sites as $item)
-                                                                @if ($item->id==$partner->site_id)
-                                                                {{ $item->description }}
-                                                                @break
-                                                                @endif
-                                                                @endforeach
-                                                            </td>
-                                                            <td>{{ date('Y-m-d H:i:s',strtotime($item->created_at)) }}
-                                                            </td>
-                                                            <td>{{ \App\Models\User::find($partner->created_user_id)->name }}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <thead>
-                                                        <tr>
-                                                            <th width='25%'>Actividades económicas</th>
-                                                            <th width='25%'>Teléfono</th>
-                                                            <th width='25%'>Dirección</th>
-                                                            <th width='25%'>Notas</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <ul>
-                                                                    @foreach ($activities as $item)
-                                                                    <li>
-                                                                        @foreach ($ciiu as $code)
-                                                                        @if ($code->id==$item->activity_id)
-                                                                        {{ $code->name }}
-                                                                        @endif
-                                                                        @endforeach
-                                                                    </li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            </td>
-                                                            <td>
-                                                                <ul>
-                                                                    @foreach ($phones as $item)
-                                                                    <li>{{ $item->phone }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            </td>
-                                                            <td>
-                                                                <ul>
-                                                                    @foreach ($addresses as $item)
-                                                                    <li>{{ $item->address }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            </td>
-                                                            <td>
-                                                                <ul>
-                                                                    @foreach ($notes as $item)
-                                                                    <li>{{ $item->note }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table> --}}
+                                                            </li>
+                                                            @endforeach
+                                                        </ul>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Teléfono</li></small>
+                                                        </label>
+                                                        <p>&emsp;
+                                                        <ul>
+                                                            @foreach ($phones as $item)
+                                                            <li>{{ $item->phone }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Dirección</li></small>
+                                                        </label>
+                                                        <p>&emsp;
+                                                        <ul>
+                                                            @foreach ($addresses as $item)
+                                                            <li>{{ $item->address }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bolder"><small>
+                                                            <li>Notas</li></small>
+                                                        </label>
+                                                        <p>&emsp;
+                                                        <ul>
+                                                            @foreach ($notes as $item)
+                                                            <li>{{ $item->note }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-lg-12 text-right">
-                                                <button class="btn btn-warning"><i class="fa fa-pencil-square-o"></i>&nbsp;Editar</button>
+                                                
                                             </div>
                                             @else
                                             <div class="col-lg-12 text-center">
@@ -310,38 +327,52 @@
                                     </div>
                                     <div class="panel-body">
                                         @if ($partner != [])
-                                            @if ($accounts != [])
-                                                @foreach ($accounts as $account)
-                                                <div class="col-lg-6">
-                                                <div class="panel panel-bordered" style="margin-bottom:0px;border-color:#FB641A;border-radius:5px">
-                                                    <div class="panel-heading" style="background-color:#FB641A;color:#fff;padding:5px">
-                                                        <h5> Cuenta #{{ $account->number }}</h5>
-                                                    </div>
-                                                    <div class="panel-body" style="padding:10px">
-                                                        <div class="row no-margin-bottom">
-                                                            <div class="col-lg-12">
-                                                                <ul>
-                                                                    <li><strong>No. Cuenta:</strong>{{ $account->number }}</li>
-                                                                    <li><strong>Estado: </strong><span class="label label-success">Cuenta Activa</span></li>
-                                                                    <li><strong>Balance de puntos: </strong>{{ $account->balance_points }}</li>
-                                                                    <li><strong>Puntos consignados: </strong>{{ $account->sum_consigned }}</li>
-                                                                    <li><strong>Puntos retirados: </strong>{{ $account->sum_withdrawal }}</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="panel-footer" style="padding:5px">
-                                                        <div class="row no-margin-bottom">
-                                                            <div class="col-lg-12" style="margin:0px">
-                                                                <button class="btn btn-danger sm-b pull-right" style="margin-right:5px"><i class="fa fa-window-close"></i>&nbsp;Inhabilitar</button>
-                                                                
-                                                            </div>
+                                        @if ($accounts != [])
+                                        @foreach ($accounts as $account)
+                                        <div class="col-lg-6">
+                                            <div class="panel panel-bordered"
+                                                style="margin-bottom:0px;border-color:#FB641A;border-radius:5px">
+                                                <div class="panel-heading"
+                                                    style="background-color:#FB641A;color:#fff;padding:5px">
+                                                    <h5> Cuenta #{{ $account->number }}</h5>
+                                                </div>
+                                                <div class="panel-body" style="padding:10px">
+                                                    <div class="row no-margin-bottom">
+                                                        <div class="col-lg-12">
+                                                            <ul>
+                                                                <li><strong>No.
+                                                                        Cuenta:</strong>{{ $account->number }}
+                                                                </li>
+                                                                <li><strong>Estado: </strong><span
+                                                                        class="label label-success">Cuenta
+                                                                        Activa</span></li>
+                                                                <li><strong>Balance de puntos:
+                                                                    </strong>{{ $account->balance_points }}
+                                                                </li>
+                                                                <li><strong>Puntos consignados:
+                                                                    </strong>{{ $account->sum_consigned }}
+                                                                </li>
+                                                                <li><strong>Puntos retirados:
+                                                                    </strong>{{ $account->sum_withdrawal }}
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="panel-footer" style="padding:5px">
+                                                    <div class="row no-margin-bottom">
+                                                        <div class="col-lg-12" style="margin:0px">
+                                                            <button class="btn btn-danger sm-b pull-right"
+                                                                style="margin-right:5px"><i
+                                                                    class="fa fa-window-close"></i>&nbsp;Inhabilitar</button>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                @endforeach
-                                            @endif
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        @endif
                                         @endif
                                     </div>
                                 </div>
