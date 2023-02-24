@@ -18,10 +18,13 @@ class PartnersComponent extends Component
     public $siteId, $group, $family, $sector, $class, $genere, $birthday, $identification, 
     $lastname, $firstname, $partnerId, $site_id, $type;
     public $phones = [],
+        $phonesPartners=[],
         $phone,
         $addresses = [],
+        $addressesPartners=[],
         $address,
         $activities = [],
+        $activitiesPartners=[],
         $activity,
         $notes = [],
         $note,
@@ -29,6 +32,8 @@ class PartnersComponent extends Component
 
     public function mount(){
         $this->economicActivities = EconomicActivity::all();
+        $this->phonesPartners=PartnersPhone::all();
+        $this->addressesPartners = PartnersAddress::all();
     }
 
     public function render()
@@ -292,12 +297,8 @@ class PartnersComponent extends Component
                 $notePartner->save();
             }
         }
-
-
         $this->resetInputFields();
         $this->emit('close-modal');
-
-
     }
 
     public function delete($id)

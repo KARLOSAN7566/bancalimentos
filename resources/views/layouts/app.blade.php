@@ -30,7 +30,10 @@
             width: 100%;
         }
 
-        
+        .thwidth {
+            width: 1px;
+            white-space: nowrap;
+        }
     </style>
 @endsection
 
