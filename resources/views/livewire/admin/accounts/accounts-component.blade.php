@@ -57,11 +57,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="padding:10px">
                         <div class="row no-margin-bottom">
                             <div class="col-lg-12">
                                 <div class="row no-margin-bottom">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6" style="margin-bottom:0px">
                                         <a href="javascript:void(0);" class="link-button" wire:click='updateType(1)'>
                                             <div @if ($type==1) class="text-center button-active" @else
                                                 class="text-center button-inactive" @endif>
@@ -70,7 +70,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6" style="margin-bottom:0px">
                                         <a href="javascript:void(0);" class="link-button" wire:click='updateType(2)'>
                                             <div @if ($type==2) class="text-center button-active" @else
                                                 class="text-center button-inactive" @endif>
@@ -84,22 +84,26 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="panel panel-bordered" style="padding:10px;margin-bottom:0px">
+                                <div class="panel panel-bordered" style="padding:10px;margin-bottom:0px;padding-top:0px">
                                     <div class="row no-margin-bottom">
-                                        <div class="col-lg-9">
+                                        <div class="col-lg-10" style="margin-bottom:0px;">
                                             <label><strong>Buscar aliado
                                                     {{ $type == '1' ? '(Cédula de ciudadania)' : '(NIT)' }}:</strong></label>
-                                            <input type="text" class="form-control" wire:model='searchPartnerField'>
+                                            <input type="text" class="form-control" wire:model='searchPartnerField' wire:keydown.enter="searchPartner">
                                             @error('searchPartnerField')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-3" style='padding-top:22px'>
-                                            <button class="btn btn-primary" wire:click='searchPartner'><i
-                                                    class="fa fa-search"></i>&nbsp;Buscar</button>
+                                        <div class="col-lg-2" style='padding-top:22px;padding-left:0px;margin-bottom:0px'>
+                                            <div class="row no-margin-bottom">
+                                                <div class="col-lg-6 text-center" style="padding-left:5px;padding-right:5px;margin-bottom:0px">
+                                                    <button class="btn btn-primary" wire:click='searchPartner'><i
+                                                        class="fa fa-search"></i>&nbsp;Buscar</button>
+                                                </div>
+                                                <div class="col-lg-6 text-center" style="padding-left:5px;padding-right:5px;margin-bottom:0px">
                                                     @livewire('admin.partners.add-partner-component')
-                                            {{-- <button class="btn btn-success"><i
-                                                    class="fa fa-plus-square"></i>&nbsp;Nuevo</button> --}}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -115,28 +119,62 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel-body">
+                                    <div class="panel-body" style="padding-top:10px">
                                         <div class="row no-margin-bottom">
-
                                             @if ($partner != [])
-                                            <div class="col-lg-12">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th width='25%'>Número de identificación</th>
-                                                            <th width='25%'>Nombres</th>
-                                                            <th width='25%'>Apellidos</th>
-                                                            <th width='25%'>Fecha de nacimiento</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>{{ $partner->identification }}</td>
-                                                            <td>{{ $partner->firstname }}</td>
-                                                            <td>{{ $partner->lastname }}</td>
-                                                            <td>{{ $partner->birthday }}</td>
-                                                        </tr>
-                                                    </tbody>
+                                            <div class="col-lg-12" style="padding:0px">
+                                                <div class="row no-margin-bottom">
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bold">Número de identificación</label>
+                                                        <p>{{ $partner->identification }}</p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bold">Nombres</label>
+                                                        <p>{{ $partner->firstname }}</p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bold">Apellidos</label>
+                                                        <p>{{ $partner->lastname }}</p>
+                                                    </div>
+                                                    <div class="col-lg-3" style="margin-bottom:0px">
+                                                        <label style="font-weight:bold">Fecha de nacimiento</label>
+                                                        <p>{{ $partner->birthday }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-margin-bottom">
+                                                    <div class="col-lg-3">
+                                                        <label style="font-weight:bold">Genero</label>
+                                                        <p>
+                                                            @switch($partner->genere)
+                                                                @case('m')
+                                                                Masculino
+                                                                @break
+
+                                                                @case('f')
+                                                                Femenino
+                                                                @break
+
+                                                                @case('o')
+                                                                Otro
+                                                                @break
+                                                                @endswitch
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label style="font-weight:bold">Estrato</label>
+                                                        <p>{{ $partner->class }}</p>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label style="font-weight:bold">Sector</label>
+                                                        <p>{{ $partner->sector }}</p>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label style="font-weight:bold">Personas nucleo familiar</label>
+                                                        <p>{{ $partner->family }}</p>
+                                                    </div>
+                                                </div>
+                                                {{-- <table class="table table-bordered">
+                                                
                                                     <thead>
                                                         <tr>
                                                             <th width='25%'>Genero</th>
@@ -243,7 +281,7 @@
                                                             </td>
                                                         </tr>
                                                     </tbody>
-                                                </table>
+                                                </table> --}}
                                             </div>
                                             <div class="col-lg-12 text-right">
                                                 <button class="btn btn-warning"><i class="fa fa-pencil-square-o"></i>&nbsp;Editar</button>

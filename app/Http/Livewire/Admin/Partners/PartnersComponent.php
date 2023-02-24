@@ -28,12 +28,11 @@ class PartnersComponent extends Component
         $economicActivities=[];
 
     public function mount(){
-        /* $this->economicActivities = EconomicActivity::all(); */
+        $this->economicActivities = EconomicActivity::all();
     }
 
     public function render()
     {
-       
         $populationGroups = PopulationGroup::all();
         $sites = Site::all();
         $partners= Partner::all();
@@ -169,12 +168,9 @@ class PartnersComponent extends Component
             //Activity
 
             $activities=PartnersActivity::where('partner_id','=',$partner->id)->get();
-
-
-
             if ($activities!='') {
                 foreach ($activities as $activity) {
-                    array_push($this->activities,$activity->activity);
+                    array_push($this->activities,$activity->activity_id);
                 }
             }
 
@@ -184,9 +180,7 @@ class PartnersComponent extends Component
                 foreach ($notes as $note) {
                     array_push($this->notes,$note->note);
                 }
-            }
-            
-            
+            }    
         }
     }
 

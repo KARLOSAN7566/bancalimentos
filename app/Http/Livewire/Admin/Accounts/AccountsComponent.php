@@ -21,6 +21,9 @@ class AccountsComponent extends Component
 
     public function render()
     {
+        $this->partner = Partner::where('id', '=', 1)
+                ->first();
+
         $populationGroups = PopulationGroup::all();
         $sites = Site::all();
         $ciiu=EconomicActivity::all();
@@ -39,6 +42,8 @@ class AccountsComponent extends Component
             'searchPartnerField.required' => 'Ingrese un número de identificación',
             'searchPartnerField.numeric' => 'El número de identificación debe ser numerico',
         ]);
+
+        $this->partner='';
 
         if ($this->type == '1') {
             $result = Partner::where('identification', '=', $this->searchPartnerField)

@@ -160,7 +160,8 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                       {{--  @if (count($activities) > 0)
+                        @if (count($activities) > 0)
+                        {{ json_encode($activities) }}
                         <div class="panel panel-bordered">
                             <div class="panel-body" style="margin:5px; padding:5px">
                                 <ul style="padding-left:20px">
@@ -179,7 +180,7 @@
                                 </ul>
                             </div>
                         </div>
-                        @endif --}}
+                        @endif
 
 
                         <div class="form-group">
